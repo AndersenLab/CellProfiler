@@ -1,0 +1,43 @@
+/usr/local/src/CellProfiler/cellprofiler/utilities/hdf5_dict.py:539: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  np.issubdtype(hdf5_type, int) or
+/usr/local/src/CellProfiler/cellprofiler/utilities/hdf5_dict.py:541: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  hdf5_type_is_float = np.issubdtype(hdf5_type, float)
+Batch file default input directory "/Users/sam/Google Drive/git/CellProfiler", does not exist
+Times reported are CPU and Wall-clock times for each module
+Mon Nov 25 15:39:27 2019: Image # 103, module LoadData # 1: CPU_time = 1.40 secs, Wall_time = 1.63 secs
+Mon Nov 25 15:39:28 2019: Image # 103, module ImageMath # 2: CPU_time = 0.01 secs, Wall_time = 0.01 secs
+Mon Nov 25 15:39:28 2019: Image # 103, module MaskImage # 3: CPU_time = 0.05 secs, Wall_time = 0.05 secs
+/usr/local/lib/python2.7/dist-packages/centrosome/cpmorphology.py:4209: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  big_labels[[slice(fe,-fe) for fe in footprint_extent]] = labels
+/usr/local/lib/python2.7/dist-packages/centrosome/cpmorphology.py:416: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  index_i, index_j, image = prepare_for_index_lookup(image, False)
+/usr/local/lib/python2.7/dist-packages/skimage/util/arraycrop.py:175: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  cropped = np.array(ar[slices], order=order, copy=True)
+Mon Nov 25 15:39:28 2019: Image # 103, module IdentifyPrimaryObjects # 4: CPU_time = 10.80 secs, Wall_time = 10.80 secs
+/usr/local/lib/python2.7/dist-packages/skimage/filters/rank/generic.py:102: UserWarning: Bitdepth of 15 may result in bad rank filter performance due to large number of bins.
+  "performance due to large number of bins." % bitdepth)
+Mon Nov 25 15:39:39 2019: Image # 103, module CorrectIlluminationCalculate # 5: CPU_time = 162.94 secs, Wall_time = 162.95 secs
+Mon Nov 25 15:42:22 2019: Image # 103, module CorrectIlluminationApply # 6: CPU_time = 0.01 secs, Wall_time = 0.01 secs
+Mon Nov 25 15:42:22 2019: Image # 103, module IdentifyPrimaryObjects # 7: CPU_time = 2.20 secs, Wall_time = 2.19 secs
+Mon Nov 25 15:42:24 2019: Image # 103, module ConvertObjectsToImage # 8: CPU_time = 0.01 secs, Wall_time = 0.01 secs
+/usr/local/lib/python2.7/dist-packages/centrosome/cpmorphology.py:2906: FutureWarning: Conversion of the second argument of issubdtype from `bool` to `np.generic` is deprecated. In future, it will be treated as `np.bool_ == np.dtype(bool).type`.
+  (np.issubdtype(image.dtype, bool) or np.issubdtype(image.dtype, int))):
+/usr/local/lib/python2.7/dist-packages/centrosome/cpmorphology.py:2920: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  index_i, index_j, image = prepare_for_index_lookup(image, border_value)
+Mon Nov 25 15:42:24 2019: Image # 103, module UntangleWorms # 9: CPU_time = 3.05 secs, Wall_time = 3.06 secs
+Mon Nov 25 15:42:27 2019: Image # 103, module UntangleWorms # 10: CPU_time = 2.32 secs, Wall_time = 2.32 secs
+Mon Nov 25 15:42:30 2019: Image # 103, module UntangleWorms # 11: CPU_time = 8.87 secs, Wall_time = 8.87 secs
+/usr/local/lib/python2.7/dist-packages/skimage/util/arraycrop.py:177: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  cropped = ar[slices]
+Mon Nov 25 15:42:39 2019: Image # 103, module OverlayOutlines # 12: CPU_time = 0.65 secs, Wall_time = 0.65 secs
+/usr/local/lib/python2.7/dist-packages/skimage/util/dtype.py:130: UserWarning: Possible precision loss when converting from float32 to uint8
+  .format(dtypeobj_in, dtypeobj_out))
+/usr/local/lib/python2.7/dist-packages/skimage/io/_io.py:140: UserWarning: /projects/b1059/projects/Sam/CellProfiler/output_data/20190926_drugresponse_03_2x_C03.out/images/processed_images/20190926_drugresponse_03_2x_C03_overlay.png is a low contrast image
+  warn('%s is a low contrast image' % fname)
+Mon Nov 25 15:42:39 2019: Image # 103, module SaveImages # 13: CPU_time = 0.70 secs, Wall_time = 0.71 secs
+Mon Nov 25 15:42:40 2019: Image # 103, module MeasureObjectIntensity # 14: CPU_time = 0.32 secs, Wall_time = 0.32 secs
+Mon Nov 25 15:42:40 2019: Image # 103, module MeasureObjectSizeShape # 15: CPU_time = 0.06 secs, Wall_time = 0.06 secs
+Mon Nov 25 15:42:40 2019: Image # 103, module RelateObjects # 16: CPU_time = 0.45 secs, Wall_time = 0.45 secs
+Mon Nov 25 15:42:41 2019: Image # 103, module RelateObjects # 17: CPU_time = 0.45 secs, Wall_time = 0.45 secs
+Mon Nov 25 15:42:41 2019: Image # 103, module ExportToSpreadsheet # 18: CPU_time = 0.00 secs, Wall_time = 0.00 secs
+Mon Nov 25 15:42:41 2019: Image # 103, module CreateBatchFiles # 19: CPU_time = 0.00 secs, Wall_time = 0.00 secs
