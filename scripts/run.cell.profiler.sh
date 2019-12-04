@@ -10,6 +10,6 @@ mkdir output_data/${PROJECT_TITLE}_summary_data
 
 COUNT=1; \
 for i in $(seq $NIMAGES); \
-  do sbatch scripts/cellprofiler.20191121.sh $i; \
+  do sbatch scripts/cellprofiler.20191204.sh $i; \
   let COUNT=$COUNT+1; \
 done
