@@ -15,6 +15,10 @@ for i in $(seq $NIMAGES); \
   let COUNT=$COUNT+1; \
 done
 
+
+
+
+# NEXT STEP IN PIPELINE
 # random file to pull table header from
 NONOVERLAPPING_SUM_DATA_HEADER=$(ls output_data/${PROJECT_TITLE}_summary_data/*_NonOverlappingWorms_control.csv | head -n 1)
 OVERLAPPING_SUM_DATA_HEADER=$(ls output_data/${PROJECT_TITLE}_summary_data/*_OverlappingWorms_control.csv | head -n 1)
