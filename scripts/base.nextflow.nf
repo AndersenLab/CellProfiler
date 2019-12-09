@@ -1,16 +1,32 @@
 #! usr/bin/env nextflow
 
 # I want the command to run like this:
-# nextflow cell.profiler.nf --projectpath ~/path/to/project_directory
+# nextflow run cell.profiler.nf --projectpath ~/path/to/project_directory
 
 / *
 ** USER INPUT PARAMETERS
 * /
-params.projectpath = "null"
+
+params.projectpath = null
 params.cellprofilerbin = "/projects/b1059/software/CellProfiler"
 
+images.ch = Channel.fromPath('params.projectpath')
 
-// process establishPaths {
+/*
+process establishPaths {
+  input:
+        
+  output:
+
+  """
+
+  """
+}
+* /
+
+
+/*
+process executeCellProfiler {
   input:
 
   output:
@@ -19,10 +35,12 @@ params.cellprofilerbin = "/projects/b1059/software/CellProfiler"
 
   """
   }
+* /
 
 
 
-// process executeCellProfiler {
+/ *
+process concatenateOutputData {
   input:
 
   output:
@@ -31,15 +49,4 @@ params.cellprofilerbin = "/projects/b1059/software/CellProfiler"
 
   """
   }
-
-
-
-// process concatenateOutputData {
-  input:
-
-  output:
-
-  """
-
-  """
-  }
+* /
