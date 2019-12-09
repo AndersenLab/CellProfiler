@@ -1,9 +1,11 @@
-// Script parameters
-//
+#! usr/bin/env nextflow
 
 
-params.projectpath = "images/raw_images/20190926_drugresponse/"
-params.cellprofilerbin = ""
+/ *
+USER INPUT PARAMETERS
+* /
+params.projectpath = "null"
+params.cellprofilerbin = "/projects/b1059/software/CellProfiler"
 
 
 // process establishPaths {
