@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-params.projectdir = '/projects/20190926_drugresponse'
+params.projectdir = '/projects/20190926_drugresponse/raw_images'
 
 process identifyImages {
 
@@ -11,7 +11,7 @@ process identifyImages {
     stdout result
 
     """
-    ls $x/raw_images
+    ls $x
     """
 }
 result.view { it }
