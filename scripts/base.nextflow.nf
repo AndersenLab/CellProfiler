@@ -1,52 +1,16 @@
-#! usr/bin/env nextflow
+#!/usr/bin/env nextflow
 
-/ * I want the command to run like this: * /
-/ * nextflow run cell.profiler.nf --projectpath ~/path/to/project_directory * /
+params.projectdir = 'projects/20190926_drugresponse'
 
-/ *
-USER INPUT PARAMETERS
-* /
+process identifyImages {
 
-params.projectpath = "20190926_drugresponse"
-params.cellprofilerbin = "/projects/b1059/software/CellProfiler"
+    input:
 
-images.ch = Channel.fromPath('params.projectpath')
+    output:
+    stdout result
 
-
-process establishPaths {
-  input:
-
-  output:
-
-  """
-
-  """
+    """
+    ls '${params.projectdir}/raw_images'
+    """
 }
-
-
-
-/*
-process executeCellProfiler {
-  input:
-
-  output:
-
-  """
-
-  """
-  }
-* /
-
-
-
-/ *
-process concatenateOutputData {
-  input:
-
-  output:
-
-  """
-
-  """
-  }
-* /
+result.view { it }
