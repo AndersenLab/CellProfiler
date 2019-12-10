@@ -8,7 +8,7 @@ process identifyImages {
     stdout result
 
     """
-    ls 'params.projectdir'
+    ls '${params.projectdir}'
     """
 }
 result.view { it }
