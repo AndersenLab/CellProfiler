@@ -1,6 +1,7 @@
 #!/usr/bin/env nextflow
 
 params.str = 'Hello world!'
+params.projectdir = 'projects/20190926_drugresponse'
 
 process splitLetters {
 
@@ -9,6 +10,7 @@ process splitLetters {
 
     """
     printf '${params.str}' | split -b 6 - chunk_
+    printf '${params.projectdir}'
     """
 }
 
