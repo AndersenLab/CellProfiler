@@ -9,8 +9,7 @@ process splitLetters {
     file 'chunk_*' into letters
 
     """
-    printf '${params.str}' | split -b 6 - chunk_
-    printf '${params.projectdir}'
+    printf '${params.projectdir}' | split -b 6 - chunk_
     """
 }
 
