@@ -10,7 +10,7 @@ process identifyImages {
     stdout result
 
     """
-    ls '${params.projectdir}/raw_images'
+    echo '${params.projectdir}'
     """
 }
 result.view { it }
