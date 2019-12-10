@@ -11,7 +11,7 @@ process identifyImages {
     stdout result
 
     """
-    ls '$x'
+    cd '$x/raw_images/' | ls
     """
 }
 result.view { it }
