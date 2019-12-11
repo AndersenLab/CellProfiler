@@ -1,17 +1,18 @@
 #!/usr/bin/env nextflow
 
-params.projectdir = file('/projects/20190926_drugresponse/raw_images')
+params.projectdir = file("${HOME}/projects/20190926_drugresponse/raw_images/*.TIF")
+
+println "Project : $workflow.projectDir"
+println "Work : $workflow.workDir"
+println "Home : $workflow.homeDir"
 
 process identifyImages {
-
-    input:
-    path x from params.projectdir
 
     output:
     stdout result
 
     """
-    ls $x
+    echo ${params.projectdir}
     """
 }
 result.view { it }
