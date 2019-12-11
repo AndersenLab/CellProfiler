@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-params.projectdir = '/projects/20190926_drugresponse/raw_images'
+params.projectdir = file('/projects/20190926_drugresponse/raw_images')
 
 process identifyImages {
 
