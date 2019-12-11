@@ -16,7 +16,7 @@
 module load singularity
 
 # Set base directories for project/experiment
-BATCH=${CP_BIN}/batch_files/Batch_data.h5
+BATCH=${PROJECT_ID}/batch_files/Batch_data.h5
 
 # Make image-specific output directory
 IMAGE_INDEX=$1
@@ -25,11 +25,11 @@ OUTPUT_HEADER=$(echo ${IMAGE} | cut -f1-5 -d "_" | cut -f1 -d ".")
 mkdir ${OUTPUT_DATA}/${OUTPUT_HEADER}.out
 
 # Execute cellprofiler
-#singularity exec -B ${CP_BIN}:${HOME} cellprofiler_3.1.9.sif \
-#cellprofiler -c -r -p ${BATCH} \
-#-f $1 \
-#-l $1 \
-#-o ${OUTPUT_DATA}/${OUTPUT_HEADER}.out
+singularity exec -B ${CPBIN}:${HOME} ${CPBIN}/cellprofiler_3.1.9.sif \
+cellprofiler -c -r -p ${BATCH} \
+  -f $1 \
+  -l $1 \
+  -o ${OUTPUT_DATA}/${OUTPUT_HEADER}.out
 
 # Move output data files to summary data folder
 # mv ${BASE_PATH}/output_data/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_control.csv ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/${OUTPUT_HEADER}_NonOverlappingWorms_control.csv
