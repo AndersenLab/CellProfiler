@@ -6,6 +6,15 @@
 export PROJECT_ID=$1
 export CPBIN=/projects/b1059/software/CellProfiler
 export IMAGES=${PROJECT_ID}/raw_images/
+
+
+echo "
+####  ####  #     #     ####  ####   ####  ####  ##  #     ####  ####
+#     #     #     #     #  #  #  #   #  #  #     ##  #     #     #  #
+#     ####  #     #     ####  ##     #  #  ###   ##  #     ####  ##
+#     #     #     #     #     #  #   #  #  #     ##  #     #     #  #
+####  ####  ####  ####  #     #  #   ####  #     ##  ####  ####  #  #
+"
 echo "Home Directory: ${HOME}"
 echo "Path to CellProfiler Software: ${CPBIN}"
 
@@ -19,14 +28,15 @@ echo "LOG:     Project Title: ${PROJECT_TITLE}"
 if [ ! -d ${PROJECT_ID}/cellprofiler_output_data ]; then
     echo "LOG:     CellProfiler Output Directory Not Found :/" ;
     echo "LOG:     Creating CellProfiler Analysis Output Directory" ;
-    mkdir ${PROJECT_ID}/cellprofiler_output_data ;
+    mkdir ${PROJECT_ID}/cellprofiler_output_data ; else
+    echo "LOG:     CellProfiler Analysis Output Directory Exists - Nice!" ;
 fi
 
 export OUTPUT_DATA=${PROJECT_ID}/cellprofiler_output_data
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
 
-#COUNT=1; \
-#for i in $(seq $NIMAGES); \
+# COUNT=1; \
+# for i in $(seq $NIMAGES); \
 #  do sbatch ${CPBIN}/scripts/cellprofiler.20191204.sh $i; \
 #  let COUNT=$COUNT+1; \
 #done
