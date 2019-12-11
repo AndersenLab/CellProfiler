@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # To run:
-# bash scripts/run.cell.profiler.sh projects/20190926_drugresponse/
+# bash /projects/b1059/software/CellProfiler/scripts/run.cell.profiler.sh projects/20190926_drugresponse/
 
 export PROJECT_ID=$1
 export IMAGES=${PROJECT_ID}/raw_images/
