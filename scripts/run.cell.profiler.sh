@@ -33,9 +33,9 @@ fi
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
 
 COUNT=1; \
-for i in $(seq $NIMAGES); \
-do sbatch ${CPBIN}/scripts/cellprofiler.20191204.sh $i; \
-let COUNT=$COUNT+1; \
+  for i in $(seq $NIMAGES); \
+  do sbatch ${CPBIN}/scripts/cellprofiler.20191204.sh $i; \
+  let COUNT=$COUNT+1; \
 done
 
 # NEXT STEP IN PIPELINE
