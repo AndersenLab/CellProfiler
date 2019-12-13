@@ -1,40 +1,32 @@
 #!/bin/bash
 
-# To run:
-# bash /projects/b1059/software/CellProfiler/scripts/run.cell.profiler.sh projects/20190926_drugresponse/
+# To run from within /projects/b1059/software/CellProfiler:
+# bash scripts/run.cell.profiler.sh projects/20190926_drugresponse
 
-export PROJECT_ID=$1
-export IMAGES=${PROJECT_ID}/raw_images/
-export PROJECT_TITLE=$(echo ${PROJECT_ID} | cut -f2 -d "/")
-export OUTPUT_DATA=${PROJECT_ID}/cellprofiler_output_data
 export CPBIN=/projects/b1059/software/CellProfiler
+export PROJECT_ID=$1
+export IMAGES=${CPBIN}/${PROJECT_ID}/raw_images/
+export PROJECT_TITLE=$(echo ${PROJECT_ID} | cut -f2 -d "/")
 
-echo "
-####  ####  #     #     ####  ####   ####  ####  ##  #     ####  ####
-#     #     #     #     #  #  #  #   #  #  #     ##  #     #     #  #
-#     ####  #     #     ####  ##     #  #  ###   ##  #     ####  ##
-#     #     #     #     #     #  #   #  #  #     ##  #     #     #  #
-####  ####  ####  ####  #     #  #   ####  #     ##  ####  ####  #  #
-"
 echo "Home Directory: ${HOME}"
 echo "Path to CellProfiler Software: ${CPBIN}"
 echo "LOG:     Begin CellProfiler Analysis"
 echo "LOG:     Project Title: ${PROJECT_TITLE}"
 NIMAGES=$(ls ${IMAGES} | wc -l)
-echo "LOG:     Number of Images: ${NIMAGES}"
+echo "LOG:     Number of Images in ${PROJECT_TITLE} Project: ${NIMAGES}"
 
-if [ ! -d ${PROJECT_ID}/cellprofiler_output_data ]; then
+if [ ! -d ${CPBIN}/${PROJECT_ID}/output_data ]; then
     echo "LOG:     CellProfiler Output Directory Not Found :/" ;
     echo "LOG:     Creating CellProfiler Analysis Output Directory" ;
-    mkdir ${PROJECT_ID}/cellprofiler_output_data ; else
+    mkdir ${CPBIN}/${PROJECT_ID}/output_data ; else
     echo "LOG:     CellProfiler Analysis Output Directory Exists - Nice!" ;
 fi
-
+export OUTPUT_DATA=${CPBIN}/${PROJECT_ID}/output_data
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
 
 COUNT=1; \
   for i in $(seq $NIMAGES); \
-  do sbatch ${CPBIN}/scripts/cellprofiler.20191204.sh $i; \
+  do sbatch ${CPBIN}/scripts/cellprofiler.20191213.sh $i; \
   let COUNT=$COUNT+1; \
 done
 
