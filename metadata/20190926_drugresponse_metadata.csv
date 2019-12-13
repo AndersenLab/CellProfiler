@@ -1,3 +1,5 @@
 "Image_FileName_RawBF","Image_PathName_RawBF","Metadata_Date","Metadata_Experiment","Metadata_Plate","Metadata_Magnification","Metadata_Well","Image_PathName_wellmask_98.png","Image_FileName_wellmask_98.png"
-"20190926_drugresponse_01_2x_A01.TIF","/projects/b1059/projects/Sam/CellProfiler/images/raw_images/20190926_drugresponse/","20190926","drugresponse","01","2x","A01","/projects/b1059/projects/Sam/CellProfiler/images/well_masks/","wellmask_98.png"
-"20190926_drugresponse_01_2x_A02.TIF","/projects/b1059/projects/Sam/CellProfiler/images/raw_images/20190926_drugresponse/","20190926","drugresponse","01","2x","A02","/projects/b1059/projects/Sam/CellProfiler/images/well_masks/","wellmask_98.png"
+"20190926_drugresponse_01_2x_A01.TIF","raw_images/","20190926","drugresponse","01","2x","A01","well_masks/","wellmask_98.png"
+"20190926_drugresponse_01_2x_A02.TIF","raw_images/","20190926","drugresponse","01","2x","A02","well_masks/","wellmask_98.png"
+"20190926_drugresponse_01_2x_A03.TIF","raw_images/","20190926","drugresponse","01","2x","A03","well_masks/","wellmask_98.png"
+"20190926_drugresponse_01_2x_A04.TIF","raw_images/","20190926","drugresponse","01","2x","A04","well_masks/","wellmask_98.png"
