@@ -15,7 +15,7 @@ images <- tidyr::separate(data = images,
                           into = c("well","TIF"))
 images <- images[,-ncol(images)]
 
-images$Image_PathName_RawBF <- "/projects/b1059/software/CellProfiler/raw_images/" ## CLUSTER
+images$Image_PathName_RawBF <- "/projects/b1059/software/CellProfiler/projects/20190926_drugresponse/raw_images" ## CLUSTER
 # images$Image_PathName_RawBF <- "images/raw_images/20190926_drugresponse/" ## LOCAL
 images <- images %>% dplyr::select(Image_FileName_RawBF, Image_PathName_RawBF, date, experiment, plate, magnification, well)
 
