@@ -12,12 +12,19 @@ echo "
 #     #     #     #     #     #  #   #  #  #     ##  #     #     #  #
 ####  ####  ####  ####  #     #  #   ####  #     ##  ####  ####  #  #
 "
-
-# To build Singularity Image of CP:
-# singularity pull docker://cellprofiler/cellprofiler:3.1.9
+echo "CellProfiler Log"
+echo "Home Directory: ${HOME}"
+echo "Path to CellProfiler Software: ${CPBIN}"
+echo "LOG:     Begin CellProfiler Analysis"
+echo "LOG:     Project Title: ${PROJECT_TITLE}"
+NIMAGES=$(ls ${IMAGES} | wc -l)
+echo "LOG:     Number of Images in ${PROJECT_TITLE} Project: ${NIMAGES}"
 
 # Load singularity module on QUEST
 module load singularity
+
+# Build Singularity Image of CP:
+# singularity pull docker://cellprofiler/cellprofiler:3.1.9
 
 # Set base directories for project/experiment
 BATCH=${CPBIN}/batch_files/Batch_data.h5

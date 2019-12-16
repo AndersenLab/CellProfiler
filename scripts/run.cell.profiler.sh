@@ -8,13 +8,6 @@ export PROJECT_ID=$1
 export IMAGES=${CPBIN}/${PROJECT_ID}/raw_images/
 export PROJECT_TITLE=$(echo ${PROJECT_ID} | cut -f2 -d "/")
 
-echo "Home Directory: ${HOME}"
-echo "Path to CellProfiler Software: ${CPBIN}"
-echo "LOG:     Begin CellProfiler Analysis"
-echo "LOG:     Project Title: ${PROJECT_TITLE}"
-NIMAGES=$(ls ${IMAGES} | wc -l)
-echo "LOG:     Number of Images in ${PROJECT_TITLE} Project: ${NIMAGES}"
-
 if [ ! -d ${CPBIN}/${PROJECT_ID}/output_data ]; then
     echo "LOG:     CellProfiler Output Directory Not Found :/" ;
     echo "LOG:     Creating CellProfiler Analysis Output Directory" ;
