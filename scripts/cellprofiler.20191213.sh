@@ -43,9 +43,13 @@ cellprofiler -c -r -p ${BATCH} \
   -o ${OUTPUT_DATA}/${OUTPUT_HEADER}.out
 
 # Move output data files to summary data folder
-# mv ${BASE_PATH}/output_data/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_control.csv ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/${OUTPUT_HEADER}_NonOverlappingWorms_control.csv
-# mv ${BASE_PATH}/output_data/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_full.csv ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/${OUTPUT_HEADER}_NonOverlappingWorms_full.csv
-#
-# mv ${BASE_PATH}/output_data/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_control.csv ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/${OUTPUT_HEADER}_OverlappingWorms_control.csv
-# mv ${BASE_PATH}/output_data/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_full.csv ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/${OUTPUT_HEADER}_OverlappingWorms_full.csv
-# mv ${BASE_PATH}/output_data/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_high_dose.csv ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/${OUTPUT_HEADER}_OverlappingWorms_high_dose.csv
+
+${PROJECT_TITLE}_summary_data/NonOverlappingWorms
+
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_control.csv ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/NonOverlappingWorms/${OUTPUT_HEADER}_NonOverlappingWorms_control.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_full.csv    ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/NonOverlappingWorms/${OUTPUT_HEADER}_NonOverlappingWorms_full.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_high.csv    ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/NonOverlappingWorms/${OUTPUT_HEADER}_NonOverlappingWorms_high.csv
+
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_control.csv ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/OverlappingWorms/${OUTPUT_HEADER}_OverlappingWorms_control.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_full.csv    ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/OverlappingWorms/${OUTPUT_HEADER}_OverlappingWorms_full.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_high.csv    ${BASE_PATH}/output_data/${PROJECT_TITLE}_summary_data/OverlappingWorms/${OUTPUT_HEADER}_OverlappingWorms_high.csv
