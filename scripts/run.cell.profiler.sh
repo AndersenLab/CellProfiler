@@ -16,12 +16,17 @@ if [ ! -d ${CPBIN}/${PROJECT_ID}/output_data ]; then
     echo "LOG:     CellProfiler Analysis Output Directory Exists - Nice!" ;
 fi
 export OUTPUT_DATA=${CPBIN}/${PROJECT_ID}/output_data
+
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms
 
+mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/ProcessedImages
+
+mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
+
 COUNT=1; \
   for i in $(seq $NIMAGES); \
-  do sbatch ${CPBIN}/scripts/cellprofiler.20191213.sh $i; \
+  do sbatch ${CPBIN}/scripts/cellprofiler.20191220.sh $i; \
   let COUNT=$COUNT+1; \
 done
