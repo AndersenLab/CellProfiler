@@ -17,7 +17,6 @@ echo "Home Directory: ${HOME}"
 echo "Path to CellProfiler Software: ${CPBIN}"
 echo "LOG:     Begin CellProfiler Analysis"
 echo "LOG:     Project Title: ${PROJECT_TITLE}"
-NIMAGES=$(ls ${IMAGES} | wc -l)
 echo "LOG:     Number of Images in ${PROJECT_TITLE} Project: ${NIMAGES}"
 
 # Load singularity module on QUEST
@@ -43,10 +42,20 @@ cellprofiler -c -r -p ${BATCH} \
   -o ${OUTPUT_DATA}/${OUTPUT_HEADER}.out
 
 # Move output data files to summary data folder
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_control.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms/${OUTPUT_HEADER}_NonOverlappingWorms_control.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_full.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms/${OUTPUT_HEADER}_NonOverlappingWorms_full.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_high.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms/${OUTPUT_HEADER}_NonOverlappingWorms_high.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_control.csv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_control.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_control.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
 
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_control.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms/${OUTPUT_HEADER}_OverlappingWorms_control.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_full.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms/${OUTPUT_HEADER}_OverlappingWorms_full.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_high.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms/${OUTPUT_HEADER}_OverlappingWorms_high.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_full.csv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_full.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_full.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
+
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelNonOverlappingWorms_high.csv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_high.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_high.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
+
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_control.csv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_control.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_control.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
+
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_full.csv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_full.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_full.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
+
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/dual_modelOverlappingWorms_high.csv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_high.csv
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_high.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
