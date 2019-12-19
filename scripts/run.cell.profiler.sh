@@ -18,8 +18,8 @@ fi
 export OUTPUT_DATA=${CPBIN}/${PROJECT_ID}/output_data
 
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
-mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms
-mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms
+mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms_Data
+mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms_Data
 
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/ProcessedImages
 
