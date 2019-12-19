@@ -19,50 +19,76 @@ echo "LOG:     Begin CellProfiler Analysis"
 echo "LOG:     Project Title: ${PROJECT_TITLE}"
 echo "LOG:     Number of Images in ${PROJECT_TITLE} Project: ${NIMAGES}"
 
-# Load singularity module on QUEST
+echo" #########################################
+      ## Loading singularity module on QUEST ##
+      #########################################"
 module load singularity
 
-# Build Singularity Image of CP:
+#echo" ####################################
+      ## Build Singularity Image of CP: ##
+      ####################################"
 # singularity pull docker://cellprofiler/cellprofiler:3.1.9
 
-# Set base directories for project/experiment
+echo" #####################################################
+      ## Setting base directories for project/experiment ##
+      #####################################################"
 BATCH=${CPBIN}/batch_files/Batch_data.h5
 
-# Make image-specific output directory
+echo" ############################################
+      ## Making image-specific output directory ##
+      ############################################"
 IMAGE_INDEX=$1
 IMAGE=$(ls ${IMAGES} | head -${IMAGE_INDEX} | tail -1)
 OUTPUT_HEADER=$(echo ${IMAGE} | cut -f1-5 -d "_" | cut -f1 -d ".")
 mkdir ${OUTPUT_DATA}/${OUTPUT_HEADER}.out
 
-# Execute cellprofiler
+echo" ############################
+      ## Executing cellprofiler ##
+      ############################"
 singularity exec -B ${CPBIN}:${HOME} ${CPBIN}/cellprofiler_3.1.9.sif \
 cellprofiler -c -r -p ${BATCH} \
   -f $1 \
   -l $1 \
   -o ${OUTPUT_DATA}/${OUTPUT_HEADER}.out
 
-# Move Output Data Files to Summary Data Folder
+echo" #####################################################
+      ## Moving Output Data Files to Summary Data Folder ##
+      #####################################################"
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*NonOverlappingWorms_control.csv                 ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_control.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_control.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_control.csv ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms_Data
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*NonOverlappingWorms_full.csv                    ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_full.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_full.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_full.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms_Data
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*NonOverlappingWorms_high.csv                    ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_high.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_high.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_NonOverlappingWorms_high.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms_Data
 
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*OverlappingWorms_control.csv                  ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_control.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_control.csv  ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_control.csv  ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms_Data
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*OverlappingWorms_full.csv                     ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_full.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_full.csv     ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_full.csv     ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms_Data
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*OverlappingWorms_high.csv                     ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_high.csv
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_high.csv     ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_OverlappingWorms_high.csv     ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms_Data
 
-# Move Processed Images to Project Summary Folder
+echo" #######################################################
+      ## Moving Processed Images to Project Summary Folder ##
+      #######################################################"
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/images/processed_images/${OUTPUT_HEADER}_overlay.png       ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/ProcessedImages
 
-# Move Log Files to Project Summary Folder
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*Experiment.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*Image.csv         ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*Welloutline.csv   ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
-mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*WormObjects.csv   ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
+echo" ################################################
+      ## Moving Log Files to Project Summary Folder ##
+      ################################################"
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*Experiment.csv                  ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Experiment.csv
+${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Experiment.csv     ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
 
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*Image.csv                       ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Image.csv
+${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Image.csv          ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
+
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*Welloutline.csv                 ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Welloutline.csv
+${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Welloutline.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
+
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*WormObjects.csv                 ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_WormObjects.csv
+${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_WormObjects.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
+
+echo" ####################################
+      ## Removing Temporary Directories ##
+      ####################################"
 rm -r ${OUTPUT_DATA}/${OUTPUT_HEADER}.out
