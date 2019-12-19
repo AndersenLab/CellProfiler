@@ -92,16 +92,16 @@ echo"
 ################################################
 "
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*Experiment.csv                  ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Experiment.csv
-${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Experiment.csv     ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Experiment.csv     ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
 
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*Image.csv                       ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Image.csv
-${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Image.csv          ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Image.csv          ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
 
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*Welloutline.csv                 ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Welloutline.csv
-${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Welloutline.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_Welloutline.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
 
 mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/*WormObjects.csv                 ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_WormObjects.csv
-${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_WormObjects.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
+mv ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data/${OUTPUT_HEADER}_WormObjects.csv    ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
 
 echo"
 ####################################
