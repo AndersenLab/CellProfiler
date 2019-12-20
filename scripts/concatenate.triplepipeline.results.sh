@@ -8,6 +8,12 @@ export PROJECT_TITLE=$(echo ${PROJECT_ID} | cut -f2 -d "/")
 export SUMMARY_DATA=${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data
 
 
+echo" \
+######################################## \
+## Non-Overlapping Data Concatenation ## \
+######################################## \
+"
+
 # CONTROL MODEL OUTPUTS
 cd ${SUMMARY_DATA}/NonOverlappingWorms_Data
 files=(*_control.csv)
@@ -38,6 +44,11 @@ rm ${PROJECT_TITLE}_all_high2.csv
 
 
 
+echo" \
+#################################### \
+## Overlapping Data Concatenation ## \
+#################################### \
+"
 
 # CONTROL MODEL OUTPUTS
 cd ${SUMMARY_DATA}/OverlappingWorms_Data
