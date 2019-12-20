@@ -49,7 +49,7 @@ files=(*_control.csv)
 less ${files[RANDOM % ${#files[@]}]} | head -1 > ${PROJECT_TITLE}_all_control1.csv
 tail -n +2 -q *_control.csv > ${PROJECT_TITLE}_all_control2.csv
 cat ${PROJECT_TITLE}_all_control1.csv ${PROJECT_TITLE}_all_control2.csv > ${PROJECT_TITLE}_all_control.csv
-rm *NonOverlappingWorms_control.csv
+rm *OverlappingWorms_control.csv
 rm ${PROJECT_TITLE}_all_control1.csv
 rm ${PROJECT_TITLE}_all_control2.csv
 
@@ -59,7 +59,7 @@ files=(*_full.csv)
 less ${files[RANDOM % ${#files[@]}]} | head -1 > ${PROJECT_TITLE}_all_full1.csv
 tail -n +2 -q *_full.csv > ${PROJECT_TITLE}_all_full2.csv
 cat ${PROJECT_TITLE}_all_full1.csv ${PROJECT_TITLE}_all_full2.csv > ${PROJECT_TITLE}_all_full.csv
-rm *NonOverlappingWorms_full.csv
+rm *OverlappingWorms_full.csv
 rm ${PROJECT_TITLE}_all_full1.csv
 rm ${PROJECT_TITLE}_all_full2.csv
 
@@ -69,6 +69,6 @@ files=(*_high.csv)
 less ${files[RANDOM % ${#files[@]}]} | head -1 > ${PROJECT_TITLE}_all_high1.csv
 tail -n +2 -q *_high.csv > ${PROJECT_TITLE}_all_high2.csv
 cat ${PROJECT_TITLE}_all_high1.csv ${PROJECT_TITLE}_all_high2.csv > ${PROJECT_TITLE}_all_high.csv
-rm *NonOverlappingWorms_high.csv
+rm *OverlappingWorms_high.csv
 rm ${PROJECT_TITLE}_all_high1.csv
 rm ${PROJECT_TITLE}_all_high2.csv
