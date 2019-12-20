@@ -9,11 +9,17 @@ println "Work : $workflow.workDir"
 println "Home : $workflow.homeDir"
 println "Project Image Directory : $params.imagedir"
 
-myImageChannel = Channel.fromPath( "${params.imagedir}/raw_images/*.TIF" )
+Channel
+  .fromPath( "${params.imagedir}/raw_images/*.TIF" )
+  .view()
+  .size()
+
+
+/*
 process identifyImages {
 
     input:
-    file image from myImageChannel
+    file image from images
 
     output:
     stdout result
@@ -23,3 +29,4 @@ process identifyImages {
     """
 }
 result.view { it }
+*/
