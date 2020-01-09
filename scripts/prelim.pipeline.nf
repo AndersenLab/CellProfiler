@@ -36,6 +36,7 @@ Channel
 /*
 Create Run Logs: Images, Metadata
 */
+
 process PublishLogs {
 
   publishDir "${params.CPBIN}/run.logs", mode: 'copy'
@@ -45,39 +46,38 @@ process PublishLogs {
   file metadata from metadata1
 
   output:
-  file("cp.image.log.txt")
-  file("cp.metadata.log.txt")
+  file("cp.image.log2.txt")
+  file("cp.indices2.txt")
 
   """
-  ls ${images} | cat > cp.image.log.txt
-  ls ${metadata} | cat > cp.metadata.log.txt
+  ls ${images} > cp.image.log2.txt
+
+  a=`cat ${metadata} | wc -l`
+  b=\$[a-1]
+  seq 1 \$b > cp.indices2.txt
   """
 
 }
 
 
-/*
 
-"""
-NINDICES=$(less ${params.metadata} | tail -n+2 | wc -l)
-seq 1 ${NINDICES} > cp.indices.txt | echo
-"""
+/*
+Create Channel of Image Indices for CellProfiler
 */
-
 /*
-process PrintImages {
+process CreateImageIndices {
 
-    publishDir
+  publishDir "${params.CPBIN}/run.logs", mode: 'copy'
 
-    input:
-    file image from images
+  input:
+  file foo from metadata2
 
-    output:
-    stdout result
+  output:
+  file("uh.txt")
 
-    """
-    echo "Beginning analysis: $image"
-    """
+  '''
+  seq 1 $(less ${foo} | tail -n+2 | wc -l) | cat > uh.txt
+  '''
+
 }
-result.view { it }
 */
