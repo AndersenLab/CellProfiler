@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # To run from within /projects/b1059/software/CellProfiler:
+# bash scripts/run.cell.profiler.sh projects/20190926_drugresponse
 # bash scripts/concatenate.triplepipeline.results.sh projects/20190926_drugresponse
 
 export CPBIN=/projects/b1059/software/CellProfiler
