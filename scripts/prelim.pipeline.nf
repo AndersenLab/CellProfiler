@@ -21,8 +21,6 @@ Channel
   .into{ images1; images2 }
 
 
-
-
 /*
 Create Metadata Channel
 */
@@ -36,48 +34,24 @@ Channel
 /*
 Create Run Logs: Images, Metadata
 */
-
 process PublishLogs {
 
   publishDir "${params.CPBIN}/run.logs", mode: 'copy'
 
   input:
-  file images from images1.collect()
+  file images from images1.toSortedList()
   file metadata from metadata1
 
   output:
-  file("cp.image.log2.txt")
-  file("cp.indices2.txt")
+  file("cp.image.log.txt")
+  file("cp.indices.txt")
 
   """
-  ls ${images} > cp.image.log2.txt
+  ls ${images} > cp.image.log.txt
 
   a=`cat ${metadata} | wc -l`
   b=\$[a-1]
-  seq 1 \$b > cp.indices2.txt
+  seq 1 \$b > cp.indices.txt
   """
 
 }
-
-
-
-/*
-Create Channel of Image Indices for CellProfiler
-*/
-/*
-process CreateImageIndices {
-
-  publishDir "${params.CPBIN}/run.logs", mode: 'copy'
-
-  input:
-  file foo from metadata2
-
-  output:
-  file("uh.txt")
-
-  '''
-  seq 1 $(less ${foo} | tail -n+2 | wc -l) | cat > uh.txt
-  '''
-
-}
-*/
