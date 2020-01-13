@@ -4,6 +4,8 @@
 # bash scripts/run.cell.profiler.sh projects/20190926_drugresponse
 # bash scripts/concatenate.triplepipeline.results.sh projects/20190926_drugresponse
 
+# JOY TIME-COURSE DATA
+
 export CPBIN=/projects/b1059/software/CellProfiler
 export PROJECT_ID=$1
 export IMAGES=${CPBIN}/${PROJECT_ID}/raw_images/
@@ -26,6 +28,6 @@ mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
 
 COUNT=1; \
   for i in $(seq $NIMAGES); \
-  do sbatch ${CPBIN}/scripts/cellprofiler.20191220.sh $i; \
+  do sbatch ${CPBIN}/scripts/cellprofiler.JN.20200113.sh $i; \
   let COUNT=$COUNT+1; \
 done
