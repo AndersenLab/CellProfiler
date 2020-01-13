@@ -8,6 +8,7 @@
 
 export CPBIN=/projects/b1059/software/CellProfiler
 export PROJECT_ID=$1
+export BATCH=$2
 export IMAGES=${CPBIN}/${PROJECT_ID}/raw_images/
 export PROJECT_TITLE=$(echo ${PROJECT_ID} | cut -f2 -d "/")
 export NIMAGES=$(ls ${IMAGES} | wc -l)

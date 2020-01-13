@@ -39,7 +39,7 @@ echo "
 ## Setting base directories for project/experiment ##
 #####################################################
 "
-BATCH=${CPBIN}/batch_files/Batch_data.h5
+# BATCH=${CPBIN}/batch_files/Batch_data.h5
 
 echo "
 ############################################
