@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # To run from within /projects/b1059/software/CellProfiler:
-# bash scripts/run.cell.profiler.sh projects/20190926_drugresponse
+# bash scripts/run.cell.profiler.sh projects/20190926_drugresponse batch_files/batch_file.h5
 # bash scripts/concatenate.triplepipeline.results.sh projects/20190926_drugresponse
 
 export CPBIN=/projects/b1059/software/CellProfiler
@@ -27,6 +27,6 @@ mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs
 
 COUNT=1; \
   for i in $(seq $NIMAGES); \
-  do sbatch ${CPBIN}/scripts/cellprofiler.20191220.sh $i; \
+  do sbatch ${CPBIN}/scripts/cellprofiler.SW.20200113.sh $i; \
   let COUNT=$COUNT+1; \
 done

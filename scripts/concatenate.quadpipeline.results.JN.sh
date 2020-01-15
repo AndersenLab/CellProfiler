@@ -24,6 +24,12 @@ rm *L1_NonOverlappingWorms.csv
 rm ${PROJECT_TITLE}_all_L1_1.csv
 rm ${PROJECT_TITLE}_all_L1_2.csv
 
+echo "
+#############################
+## L1 Outputs Concatenated ##
+#############################
+"
+
 # L2/L3 MODEL OUTPUTS
 files=(*L2L3_NonOverlappingWorms.csv)
 less ${files[RANDOM % ${#files[@]}]} | head -1 > ${PROJECT_TITLE}_all_L2L3_1.csv
@@ -32,6 +38,12 @@ cat ${PROJECT_TITLE}_all_L2L3_1.csv ${PROJECT_TITLE}_all_L2L3_2.csv > ${PROJECT_
 rm *L2L3_NonOverlappingWorms.csv
 rm ${PROJECT_TITLE}_all_L2L3_1.csv
 rm ${PROJECT_TITLE}_all_L2L3_2.csv
+
+echo "
+####################################
+## L2 and L3 Outputs Concatenated ##
+####################################
+"
 
 # L4 MODEL OUTPUTS
 files=(*L4_NonOverlappingWorms.csv)
@@ -42,6 +54,12 @@ rm *L4_NonOverlappingWorms.csv
 rm ${PROJECT_TITLE}_all_L4_1.csv
 rm ${PROJECT_TITLE}_all_L4_2.csv
 
+echo "
+##############################
+## L4s Outputs Concatenated ##
+##############################
+"
+
 # HIGH MODEL OUTPUTS
 files=(*adult_NonOverlappingWorms.csv)
 less ${files[RANDOM % ${#files[@]}]} | head -1 > ${PROJECT_TITLE}_all_adult_1.csv
@@ -50,6 +68,20 @@ cat ${PROJECT_TITLE}_all_adult_1.csv ${PROJECT_TITLE}_all_adult_2.csv > ${PROJEC
 rm *adult_NonOverlappingWorms.csv
 rm ${PROJECT_TITLE}_all_adult_1.csv
 rm ${PROJECT_TITLE}_all_adult_2.csv
+
+echo "
+################################
+## Adult Outputs Concatenated ##
+################################
+"
+
+
+
+
+
+
+
+
 
 echo "
 ####################################
@@ -67,6 +99,12 @@ rm *L1_OverlappingWorms.csv
 rm ${PROJECT_TITLE}_all_L1_1.csv
 rm ${PROJECT_TITLE}_all_L1_2.csv
 
+echo "
+#############################
+## L1 Outputs Concatenated ##
+#############################
+"
+
 # L2/L3 MODEL OUTPUTS
 files=(*L2L3_OverlappingWorms.csv)
 less ${files[RANDOM % ${#files[@]}]} | head -1 > ${PROJECT_TITLE}_all_L2L3_1.csv
@@ -75,6 +113,12 @@ cat ${PROJECT_TITLE}_all_L2L3_1.csv ${PROJECT_TITLE}_all_L2L3_2.csv > ${PROJECT_
 rm *L2L3_OverlappingWorms.csv
 rm ${PROJECT_TITLE}_all_L2L3_1.csv
 rm ${PROJECT_TITLE}_all_L2L3_2.csv
+
+echo "
+####################################
+## L2 and L3 Outputs Concatenated ##
+####################################
+"
 
 # L4 MODEL OUTPUTS
 files=(*L4_OverlappingWorms.csv)
@@ -85,6 +129,12 @@ rm *L4_OverlappingWorms.csv
 rm ${PROJECT_TITLE}_all_L4_1.csv
 rm ${PROJECT_TITLE}_all_L4_2.csv
 
+echo "
+##############################
+## L4s Outputs Concatenated ##
+##############################
+"
+
 # HIGH MODEL OUTPUTS
 files=(*adult_OverlappingWorms.csv)
 less ${files[RANDOM % ${#files[@]}]} | head -1 > ${PROJECT_TITLE}_all_adult_1.csv
@@ -93,3 +143,12 @@ cat ${PROJECT_TITLE}_all_adult_1.csv ${PROJECT_TITLE}_all_adult_2.csv > ${PROJEC
 rm *adult_OverlappingWorms.csv
 rm ${PROJECT_TITLE}_all_adult_1.csv
 rm ${PROJECT_TITLE}_all_adult_2.csv
+
+echo "
+################################
+## Adult Outputs Concatenated ##
+################################
+"
+
+mkdir ${CPBIN}/${PROJECT_ID}/slurms
+mv ${CPBIN}/slurm*.out ${CPBIN}/${PROJECT_ID}/slurms

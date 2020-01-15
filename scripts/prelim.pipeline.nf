@@ -11,8 +11,6 @@ println "Home : $workflow.homeDir"
 println "Project Image Directory : $params.imagedir"
 
 
-
-
 /*
 Create Image Channel
 */
@@ -24,11 +22,10 @@ Channel
 /*
 Create Metadata Channel
 */
+
 Channel
   .fromPath( "${params.metadata}" )
   .into{ metadata1; metadata2 }
-
-
 
 
 /*
@@ -44,14 +41,21 @@ process PublishLogs {
 
   output:
   file("cp.image.log.txt")
-  file("cp.indices.txt")
+  file("cp.indices.txt").readLines() into indices
 
   """
-  ls ${images} > cp.image.log.txt
+  ls $images > cp.image.log.txt
 
-  a=`cat ${metadata} | wc -l`
+  a=`cat $metadata | wc -l`
   b=\$[a-1]
   seq 1 \$b > cp.indices.txt
   """
+
+
+}
+
+process RunCellProfiler {
+
+  
 
 }
