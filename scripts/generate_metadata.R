@@ -6,7 +6,7 @@
 # [1] = Assay Name in Project Directory i.e. 20200626_toxin08B
 args <- commandArgs(trailingOnly = TRUE)
 require(tidyverse)
-basedir <- c("/projects/b1059/software/CellProfiler/")
+basedir <- getwd()
 setwd(paste(basedir, 
             "projects/", 
             as.character(args[1]), 
