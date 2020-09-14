@@ -45,7 +45,7 @@ cd [desired directory]
 ```
 2) Clone CP repository
 ```
-git clone git@github.com/AndersenLab/CellProfiler.git
+git clone https://github.com/AndersenLab/CellProfiler.git
 ```
 3) Download CP Docker image and convert to Singularity image within CP directory:
 ```
