@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# To run from within /projects/b1059/software/CellProfiler:
+# To run from within CellProfiler directory:
 # bash scripts/run.cellprofiler.sh projects/[your_project_directory] batch_files/[your_batch_file]
 
-export CPBIN=/projects/b1059/software/CellProfiler
+export CPBIN=$(pwd)
 export PROJECT_ID=$1
 export BATCH=$2
 export IMAGES=${CPBIN}/${PROJECT_ID}/raw_images/
