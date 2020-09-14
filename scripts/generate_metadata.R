@@ -8,10 +8,10 @@ args <- commandArgs(trailingOnly = TRUE)
 require(tidyverse)
 basedir <- getwd()
 setwd(paste(basedir, 
-            "projects/", 
+            "projects", 
             as.character(args[1]), 
-            "/raw_images",
-            sep = "")) 
+            "raw_images",
+            sep = "/")) 
 
 ###################
 # Image File Path #
@@ -33,14 +33,14 @@ images <- Image_FileName_RawBF %>%
 
 
 
-images$Image_PathName_RawBF <- paste(basedir,"projects/",as.character(args[1]),"/raw_images", sep = "") ## CLUSTER
+images$Image_PathName_RawBF <- paste(basedir,"projects",as.character(args[1]),"raw_images", sep = "/") ## CLUSTER
 images <- images %>% 
   dplyr::select(Image_FileName_RawBF, Image_PathName_RawBF, date, experiment, plate, magnification, well)
 
 #######################
 # Well Mask File Path #
 #######################
-images$Image_PathName_wellmask_98.png <- paste(basedir,"well_masks/",sep = "") ## CLUSTER
+images$Image_PathName_wellmask_98.png <- paste(basedir,"well_masks/",sep = "/") ## CLUSTER
 images$Image_FileName_wellmask_98.png <- "wellmask_98.png"
 colnames(images) <- c(colnames(images)[1:2], 
                       "Metadata_Date",
@@ -58,5 +58,5 @@ filename <- paste(as.character(args[1]),
                   "metadata",
                   today,
                   sep = "_")
-setwd(paste(basedir,"metadata",sep = ""))
+setwd(paste(basedir,"metadata",sep = "/"))
 write.csv(x = images, file = paste(filename,".csv",sep = ""), row.names = F)
