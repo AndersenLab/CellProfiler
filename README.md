@@ -38,10 +38,10 @@ CellProfiler
 ```
 
 ### To recreate CellProfiler (CP) on QUEST:
-1) Navigate to shared allocation:
+1) Navigate to the directory where you wish to clone CP:
 ```
 ssh -X user@quest.it.northwestern.edu
-cd ../../projects/b1059/software
+cd [desired directory]
 ```
 2) Clone CP repository
 ```
