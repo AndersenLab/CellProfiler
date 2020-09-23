@@ -54,7 +54,7 @@ echo "
 ## Executing cellprofiler ##
 ############################
 "
-singularity exec -B ${CPBIN}:${HOME} ${CPBIN}/cellprofiler_3.1.9.sif \
+singularity exec -B /projects:/projects/ cellprofiler_3.1.9.sif \
 cellprofiler -c -r -p ${BATCH} \
   -f $1 \
   -l $1 \
