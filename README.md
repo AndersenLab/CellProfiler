@@ -52,6 +52,7 @@ git clone https://github.com/AndersenLab/CellProfiler.git
 cd CellProfiler
 module load singularity
 singularity pull docker://cellprofiler/cellprofiler:3.1.9
+singularity pull docker://cellprofiler/cellprofiler:4.0.3
 ```
 
 ### To execute the CP pipeline on QUEST:
