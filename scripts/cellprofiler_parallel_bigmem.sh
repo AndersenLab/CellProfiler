@@ -18,6 +18,7 @@ echo "Path to CellProfiler Software: ${CPBIN}"
 echo "LOG:     Begin CellProfiler Analysis"
 echo "LOG:     Project Title: ${PROJECT_TITLE}"
 echo "LOG:     Number of Images in ${PROJECT_TITLE} Project: ${NIMAGES}"
+echo "LOG:     CellProfiler Version: ${CP_SIF}"
 
 echo "
 #########################################
@@ -27,10 +28,12 @@ echo "
 module load singularity
 
 #echo"
-####################################
-## Build Singularity Image of CP: ##
-####################################"
+#######################################
+## Build Singularity Image(s) of CP: ##
+#######################################
+#"
 # singularity pull docker://cellprofiler/cellprofiler:3.1.9
+# singularity pull docker://cellprofiler/cellprofiler:4.0.3
 
 echo "
 #####################################################
@@ -45,16 +48,25 @@ echo "
 ############################################
 "
 IMAGE_INDEX=$1
-IMAGE=$(ls ${IMAGES} | head -${IMAGE_INDEX} | tail -1)
-OUTPUT_HEADER=$(echo ${IMAGE} | cut -f1-5 -d "_" | cut -f1 -d ".")
-mkdir ${OUTPUT_DATA}/${OUTPUT_HEADER}.out
+RUN_INDEX=$2
+
+if [ $RUN_INDEX -eq 1 ];
+then
+  IMAGE=$(ls ${IMAGES} | grep /*.TIF | head -${IMAGE_INDEX} | tail -1);
+  OUTPUT_HEADER=$(echo ${IMAGE} | cut -f1-5 -d "_" | cut -f1 -d ".");
+  mkdir ${OUTPUT_DATA}/${OUTPUT_HEADER}.out;
+else
+  IMAGE=$(cat ${IMAGES}/not_processed.tsv | head -${IMAGE_INDEX} | tail -1);
+  OUTPUT_HEADER=$(echo ${IMAGE} | cut -f1-5 -d "_" | cut -f1 -d ".");
+  mkdir ${OUTPUT_DATA}/${OUTPUT_HEADER}.out;
+fi
 
 echo "
 ############################
 ## Executing cellprofiler ##
 ############################
 "
-singularity exec -B /projects:/projects/ cellprofiler_3.1.9.sif \
+singularity exec -B /projects:/projects/ ${CP_SIF} \
 cellprofiler -c -r -p ${BATCH} \
   -f $1 \
   -l $1 \
@@ -69,13 +81,13 @@ cd ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data
 for file in NonOverlappingWorms_*.csv; \
 do
   mv $file ${OUTPUT_HEADER}_$file; \
-  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/NonOverlappingWorms_Data; \
+  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/NonOverlappingWorms_Data; \
 done
 
 for file in OverlappingWorms_*.csv; \
 do
   mv $file ${OUTPUT_HEADER}_$file; \
-  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/OverlappingWorms_Data; \
+  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/OverlappingWorms_Data; \
 done
 
 echo "
@@ -84,7 +96,7 @@ echo "
 #######################################################
 "
 cd ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/images
-mv processed_images/${OUTPUT_HEADER}_overlay.png       ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/ProcessedImages
+mv processed_images/${OUTPUT_HEADER}_overlay.png       ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/ProcessedImages
 
 echo "
 ################################################
@@ -95,25 +107,25 @@ cd ${OUTPUT_DATA}/${OUTPUT_HEADER}.out/output_data
 for file in Experiment.csv; \
 do
   mv $file ${OUTPUT_HEADER}_$file; \
-  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs; \
+  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/Logs; \
 done
 
 for file in Image.csv; \
 do
   mv $file ${OUTPUT_HEADER}_$file; \
-  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs; \
+  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/Logs; \
 done
 
 for file in Welloutline.csv; \
 do
   mv $file ${OUTPUT_HEADER}_$file; \
-  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs; \
+  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/Logs; \
 done
 
 for file in WormObjects.csv; \
 do
   mv $file ${OUTPUT_HEADER}_$file; \
-  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_summary_data/Logs; \
+  mv ${OUTPUT_HEADER}_$file ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/Logs; \
 done
 
 echo "
