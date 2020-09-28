@@ -47,11 +47,12 @@ cd [desired directory]
 ```
 git clone https://github.com/AndersenLab/CellProfiler.git
 ```
-3) Download CP Docker image and convert to Singularity image within CP directory:
+3) Download CP Docker images and convert to Singularity images within CP directory:
 ```
 cd CellProfiler
 module load singularity
 singularity pull docker://cellprofiler/cellprofiler:3.1.9
+singularity pull docker://cellprofiler/cellprofiler:4.0.3
 ```
 
 ### To execute the CP pipeline on QUEST:
