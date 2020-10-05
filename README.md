@@ -22,9 +22,10 @@ CellProfiler
                 ├── NonOverlappingWorms_Data
   ├── scripts
       ├── generate_metadata.R
-      ├── run.cellprofiler.sh
+      ├── run_cellprofiler.sh
       ├── cellprofiler_parallel.sh
-      ├── aggregate.cell.profiler.results.R
+      ├── check_run_cellprofiler.sh
+      ├── aggregate_cellprofiler_results.R
   ├── well_masks
       ├── wellmask_98.png
   ├── worm_models
