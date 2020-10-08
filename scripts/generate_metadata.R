@@ -16,7 +16,7 @@ setwd(paste(basedir,
 ###################
 # Image File Path #
 ###################
-Image_FileName_RawBF <- data.frame(list.files())
+Image_FileName_RawBF <- data.frame(list.files(pattern = "*.TIF"))
 colnames(Image_FileName_RawBF) <- c("Image_FileName_RawBF")
 Image_FileName_RawBF$path.copy <- Image_FileName_RawBF$Image_FileName_RawBF
 images <- Image_FileName_RawBF %>% 

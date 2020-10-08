@@ -13,6 +13,8 @@ echo "
 ####  ####  ####  ####  #     #  #   ####  #     ##  ####  ####  #  #
 "
 echo "CellProfiler Log"
+echo "Command: $@" # Nic 20201004, argument 1 and argument 2 from cellprofiler.sh?
+echo "Command: ${COMD_RUN}" # try to print command from check
 echo "Home Directory: ${HOME}"
 echo "Path to CellProfiler Software: ${CPBIN}"
 echo "LOG:     Begin CellProfiler Analysis"
@@ -52,11 +54,13 @@ RUN_INDEX=$2
 
 if [ $RUN_INDEX -eq 1 ];
 then
-  IMAGE=$(ls ${IMAGES} | grep /*.TIF | head -${IMAGE_INDEX} | tail -1);
+  # get the image name matching the image_index number from the nimage_names.tsv
+  IMAGE=$(awk -v nimg="$IMAGE_INDEX" '$1==nimg { print $2 }' ${IMAGES}nimage_names.tsv);
   OUTPUT_HEADER=$(echo ${IMAGE} | cut -f1-5 -d "_" | cut -f1 -d ".");
   mkdir ${OUTPUT_DATA}/${OUTPUT_HEADER}.out;
 else
-  IMAGE=$(cat ${IMAGES}/not_processed.tsv | head -${IMAGE_INDEX} | tail -1);
+  # get the image name matching the image_index number from the nimage_not_processed.tsv
+  IMAGE=$(awk -v nimg="$IMAGE_INDEX" '$1==nimg { print $2 }' ${IMAGES}nimage_not_processed.tsv);
   OUTPUT_HEADER=$(echo ${IMAGE} | cut -f1-5 -d "_" | cut -f1 -d ".");
   mkdir ${OUTPUT_DATA}/${OUTPUT_HEADER}.out;
 fi

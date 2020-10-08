@@ -26,13 +26,13 @@ basedir <- getwd()
 chunks <- stringr::str_split(as.character(args[1]), pattern = "_data_")
 project <- chunks[[1]][1]
 setwd(paste0(basedir, "/projects/", project, "/output_data/", as.character(args[1]), "/NonOverlappingWorms_Data"))
-  
+
 #####################
 ### Read Metadata ###
 #####################
 message(paste("Reading metadata file from:", basedir, "/metadata/", as.character(args[2]), sep = ""))
 metadata <- readr::read_csv(paste(basedir, "/metadata/", as.character(args[2]), sep = "")) %>%
-  dplyr::mutate(Metadata_Plate = as.integer(stringr::str_replace(Metadata_Plate, pattern = "p", replacement = ""))) %>%
+  # dplyr::mutate(Metadata_Plate = as.integer(stringr::str_replace(Metadata_Plate, pattern = "p", replacement = ""))) %>%
   dplyr::mutate(Metadata_Date = as.integer(Metadata_Date))
 
 ################################
@@ -62,7 +62,7 @@ for(j in 1:length(file.df$data)){
       dplyr::mutate(model = file.df$model[[j]]) %>% # should be J  NEED TO ADD METADATA FROM FILE NAME HERE
       dplyr::mutate(Metadata_Date = as.integer(file_metadata$Metadata_Date),
                     Metadata_Experiment = file_metadata$Metadata_Experiment,
-                    Metadata_Plate = as.integer(stringr::str_replace(file_metadata$Metadata_Plate, pattern = "p", replacement = "")),
+                    # Metadata_Plate = as.integer(stringr::str_replace(file_metadata$Metadata_Plate, pattern = "p", replacement = "")),
                     Metadata_Magnification = file_metadata$Metadata_Magnification,
                     Metadata_Well = file_metadata$Metadata_Well)
     model.specific.data[[i]] <- data
