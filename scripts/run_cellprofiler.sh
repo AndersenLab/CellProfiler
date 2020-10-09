@@ -51,5 +51,5 @@ IMAGE_NUMS=$(awk '{ print $1 }' ${IMAGES}nimage_names.tsv)
 # Send each of these image numbers back to CellProfiler script for reprocessing    
 for i in ${IMAGE_NUMS};
     do
-    sbatch ${CPBIN}/scripts/cellprofiler_parallel_bigmem_NEW.sh $i 1;
+    sbatch ${CPBIN}/scripts/cellprofiler_parallel_bigmem.sh $i 1;
 done

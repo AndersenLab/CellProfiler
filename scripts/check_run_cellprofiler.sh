@@ -73,7 +73,7 @@ if test -f ${IMAGES}not_processed.tsv; then
     # Send these files back to CellProfiler script for reprocessing.    
     for i in ${REPROCESS_IMAGE_NUMS};
         do
-        sbatch ${CPBIN}/scripts/cellprofiler_parallel_bigmem_NEW.sh $i 2;
+        sbatch ${CPBIN}/scripts/cellprofiler_parallel_bigmem.sh $i 2;
     done
     else
         # Report the good news
