@@ -33,6 +33,10 @@ CellProfiler
       ├── L1_N2_HB101_50w.xml
       ├── L2L3_N2_HB101_50w.xml
       ├── L4_N2_HB101_50w.xml
+      ├── Adult_N2_HB101_100w.xml
+      ├── L1_N2_HB101_100w.xml
+      ├── L2L3_N2_HB101_100w.xml
+      ├── L4_N2_HB101_100w.xml
       ├── WM_FBZ_control.xml
       ├── WM_FBZ_dose.xml
       ├── high_dose_worm_model.xml
@@ -71,7 +75,7 @@ Rscript scripts/generate_metadata.R 20191119_example
 5) Collect measurements using CellProfiler:
 ```
 bash scripts/run_cellprofiler.sh projects/20191119_example batch_files/20191119_example_batch_[date].h5
-bash scripts/check_run_cellprofiler.sh 
+bash scripts/check_run_cellprofiler.sh projects/20191119_example batch_files/20191119_example_batch_[date].h5
 ```
 6) Aggregate measurement data:
 ```
