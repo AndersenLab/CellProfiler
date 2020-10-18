@@ -1,0 +1,80 @@
+
+####  ####  #     #     ####  ####   ####  ####  ##  #     ####  ####
+#     #     #     #     #  #  #  #   #  #  #     ##  #     #     #  #
+#     ####  #     #     ####  ##     #  #  ###   ##  #     ####  ##
+#     #     #     #     #     #  #   #  #  #     ##  #     #     #  #
+####  ####  ####  ####  #     #  #   ####  #     ##  ####  ####  #  #
+
+CellProfiler Log
+Command: 15 1
+Command: 
+Home Directory: /home/jna7035
+Path to CellProfiler Software: /projects/b1059/projects/Joy/CellProfiler
+LOG:     Begin CellProfiler Analysis
+LOG:     Project Title: 20191119_example
+LOG:     Number of Images in 20191119_example Project: 20
+LOG:     CellProfiler Version: cellprofiler_4.0.3.sif
+
+#########################################
+## Loading singularity module on QUEST ##
+#########################################
+
+
+#####################################################
+## Setting base directories for project/experiment ##
+#####################################################
+
+
+############################################
+## Making image-specific output directory ##
+############################################
+
+
+############################
+## Executing cellprofiler ##
+############################
+
+Times reported are CPU and Wall-clock times for each module
+Sun Oct 18 14:04:26 2020: Image # 15, module LoadData # 1: CPU_time = 1.69 secs, Wall_time = 1.75 secs
+Sun Oct 18 14:04:27 2020: Image # 15, module ImageMath # 2: CPU_time = 0.02 secs, Wall_time = 0.01 secs
+Sun Oct 18 14:04:27 2020: Image # 15, module MaskImage # 3: CPU_time = 0.06 secs, Wall_time = 0.06 secs
+Sun Oct 18 14:04:27 2020: Image # 15, module IdentifyPrimaryObjects # 4: CPU_time = 1.76 secs, Wall_time = 1.78 secs
+Sun Oct 18 14:04:29 2020: Image # 15, module CorrectIlluminationCalculate # 5: CPU_time = 100.91 secs, Wall_time = 101.11 secs
+Sun Oct 18 14:06:10 2020: Image # 15, module CorrectIlluminationApply # 6: CPU_time = 0.02 secs, Wall_time = 0.03 secs
+Sun Oct 18 14:06:10 2020: Image # 15, module IdentifyPrimaryObjects # 7: CPU_time = 2.67 secs, Wall_time = 2.69 secs
+Sun Oct 18 14:06:13 2020: Image # 15, module ConvertObjectsToImage # 8: CPU_time = 0.01 secs, Wall_time = 0.01 secs
+Sun Oct 18 14:06:13 2020: Image # 15, module UntangleWorms # 9: CPU_time = 107.53 secs, Wall_time = 107.92 secs
+Sun Oct 18 14:08:01 2020: Image # 15, module UntangleWorms # 10: CPU_time = 91.82 secs, Wall_time = 92.13 secs
+Sun Oct 18 14:09:33 2020: Image # 15, module UntangleWorms # 11: CPU_time = 52.03 secs, Wall_time = 52.06 secs
+Sun Oct 18 14:10:25 2020: Image # 15, module UntangleWorms # 12: CPU_time = 12.43 secs, Wall_time = 12.43 secs
+Sun Oct 18 14:10:38 2020: Image # 15, module RescaleIntensity # 13: CPU_time = 0.04 secs, Wall_time = 0.05 secs
+Sun Oct 18 14:10:38 2020: Image # 15, module OverlayOutlines # 14: CPU_time = 1.02 secs, Wall_time = 1.03 secs
+Sun Oct 18 14:10:39 2020: Image # 15, module SaveImages # 15: CPU_time = 4.95 secs, Wall_time = 5.01 secs
+Sun Oct 18 14:10:44 2020: Image # 15, module MeasureObjectIntensity # 16: CPU_time = 1.46 secs, Wall_time = 1.46 secs
+Sun Oct 18 14:10:45 2020: Image # 15, module MeasureObjectSizeShape # 17: CPU_time = 1.28 secs, Wall_time = 1.28 secs
+Sun Oct 18 14:10:46 2020: Image # 15, module RelateObjects # 18: CPU_time = 0.03 secs, Wall_time = 0.03 secs
+Sun Oct 18 14:10:47 2020: Image # 15, module RelateObjects # 19: CPU_time = 0.04 secs, Wall_time = 0.04 secs
+Sun Oct 18 14:10:47 2020: Image # 15, module RelateObjects # 20: CPU_time = 0.04 secs, Wall_time = 0.04 secs
+Sun Oct 18 14:10:47 2020: Image # 15, module RelateObjects # 21: CPU_time = 0.03 secs, Wall_time = 0.03 secs
+Sun Oct 18 14:10:47 2020: Image # 15, module ExportToSpreadsheet # 22: CPU_time = 0.00 secs, Wall_time = 0.00 secs
+Sun Oct 18 14:10:47 2020: Image # 15, module CreateBatchFiles # 23: CPU_time = 0.00 secs, Wall_time = 0.00 secs
+
+#####################################################
+## Moving Output Data Files to Summary Data Folder ##
+#####################################################
+
+
+#######################################################
+## Moving Processed Images to Project Summary Folder ##
+#######################################################
+
+
+################################################
+## Moving Log Files to Project Summary Folder ##
+################################################
+
+
+####################################
+## Removing Temporary Directories ##
+####################################
+
