@@ -1,0 +1,994 @@
+Key,Value
+CellProfiler_Version,4.0.3
+Default_InputFolder,/Users/joy/Documents/GitHub/CellProfiler
+Default_OutputFolder,/Users/joy/Documents/GitHub/CellProfiler
+Path_Mappings,"{""CaseSensitive"": true, ""LocalSeparator"": ""/"", ""PathMappings"": [[""/Users/joy/Documents/GitHub"", ""/projects/b1059/projects/Joy""]], ""Url2PathnamePackageName"": ""urllib.request""}"
+Pipeline_Pipeline,"CellProfiler Pipeline: http://www.cellprofiler.org
+Version:5
+DateRevision:403
+GitHash:
+ModuleCount:23
+HasImagePlaneDetails:False
+
+LoadData:[module_num:1|svn_version:'Unknown'|variable_revision_number:6|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Input data file location:Default Input Folder sub-folder|metadata
+    Name of the file:20191119_example_metadata_20201018.csv
+    Load images based on this data?:Yes
+    Base image location:Default Input Folder|
+    Process just a range of rows?:No
+    Rows to process:1,100000
+    Group images by metadata?:No
+    Select metadata tags for grouping:
+    Rescale intensities?:Yes
+
+ImageMath:[module_num:2|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Operation:Invert
+    Raise the power of the result by:1.0
+    Multiply the result by:1.0
+    Add to result:0.0
+    Set values less than 0 equal to 0?:Yes
+    Set values greater than 1 equal to 1?:Yes
+    Replace invalid values with 0?:Yes
+    Ignore the image masks?:No
+    Name the output image:InvertedRAW
+    Image or measurement?:Image
+    Select the image:RawBF
+    Multiply the image by:1.0
+    Measurement:
+    Image or measurement?:Image
+    Select the image:
+    Multiply the image by:1.0
+    Measurement:
+
+MaskImage:[module_num:3|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:InvertedRAW
+    Name the output image:MaskedRaw
+    Use objects or an image as a mask?:Image
+    Select object for mask:None
+    Select image for mask:wellmask_98.png
+    Invert the mask?:No
+
+IdentifyPrimaryObjects:[module_num:4|svn_version:'Unknown'|variable_revision_number:14|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:MaskedRaw
+    Name the primary objects to be identified:Welloutline
+    Typical diameter of objects, in pixel units (Min,Max):800,1800
+    Discard objects outside the diameter range?:Yes
+    Discard objects touching the border of the image?:No
+    Method to distinguish clumped objects:None
+    Method to draw dividing lines between clumped objects:Intensity
+    Size of smoothing filter:10
+    Suppress local maxima that are closer than this minimum allowed distance:7.0
+    Speed up by using lower-resolution image to find local maxima?:Yes
+    Fill holes in identified objects?:Never
+    Automatically calculate size of smoothing filter for declumping?:Yes
+    Automatically calculate minimum allowed distance between local maxima?:Yes
+    Handling of objects if excessive number of objects identified:Continue
+    Maximum number of objects:500
+    Display accepted local maxima?:No
+    Select maxima color:Blue
+    Use advanced settings?:Yes
+    Threshold setting version:11
+    Threshold strategy:Global
+    Thresholding method:Manual
+    Threshold smoothing scale:1.3488
+    Threshold correction factor:1.0
+    Lower and upper bounds on threshold:0.0,1.0
+    Manual threshold:0.5
+    Select the measurement to threshold with:None
+    Two-class or three-class thresholding?:Two classes
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+    Size of adaptive window:50
+    Lower outlier fraction:0.05
+    Upper outlier fraction:0.05
+    Averaging method:Mean
+    Variance method:Standard deviation
+    # of deviations:2.0
+    Thresholding method:Otsu
+
+CorrectIlluminationCalculate:[module_num:5|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:MaskedRaw
+    Name the output image:IllumGrey2
+    Select how the illumination function is calculated:Regular
+    Dilate objects in the final averaged image?:No
+    Dilation radius:1
+    Block size:60
+    Rescale the illumination function?:Yes
+    Calculate function for each image individually, or based on all images?:Each
+    Smoothing method:Median Filter
+    Method to calculate smoothing filter size:Object size
+    Approximate object diameter:100
+    Smoothing filter size:10
+    Retain the averaged image?:No
+    Name the averaged image:IllumBlueAvg
+    Retain the dilated image?:No
+    Name the dilated image:IllumBlueDilated
+    Automatically calculate spline parameters?:Yes
+    Background mode:auto
+    Number of spline points:5
+    Background threshold:2.0
+    Image resampling factor:2.0
+    Maximum number of iterations:40
+    Residual value for convergence:0.001
+
+CorrectIlluminationApply:[module_num:6|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:MaskedRaw
+    Name the output image:CorrGrey2
+    Select the illumination function:IllumGrey2
+    Select how the illumination function is applied:Divide
+    Set output image values less than 0 equal to 0?:Yes
+    Set output image values greater than 1 equal to 1?:Yes
+
+IdentifyPrimaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_number:14|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:CorrGrey2
+    Name the primary objects to be identified:WormObjects
+    Typical diameter of objects, in pixel units (Min,Max):10,150
+    Discard objects outside the diameter range?:Yes
+    Discard objects touching the border of the image?:Yes
+    Method to distinguish clumped objects:None
+    Method to draw dividing lines between clumped objects:Intensity
+    Size of smoothing filter:10
+    Suppress local maxima that are closer than this minimum allowed distance:7.0
+    Speed up by using lower-resolution image to find local maxima?:Yes
+    Fill holes in identified objects?:After both thresholding and declumping
+    Automatically calculate size of smoothing filter for declumping?:Yes
+    Automatically calculate minimum allowed distance between local maxima?:Yes
+    Handling of objects if excessive number of objects identified:Continue
+    Maximum number of objects:500
+    Display accepted local maxima?:No
+    Select maxima color:Blue
+    Use advanced settings?:Yes
+    Threshold setting version:11
+    Threshold strategy:Global
+    Thresholding method:Robust Background
+    Threshold smoothing scale:1.3488
+    Threshold correction factor:1.0
+    Lower and upper bounds on threshold:0.001,1.0
+    Manual threshold:0.0
+    Select the measurement to threshold with:None
+    Two-class or three-class thresholding?:Two classes
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+    Size of adaptive window:50
+    Lower outlier fraction:0.05
+    Upper outlier fraction:0.05
+    Averaging method:Mean
+    Variance method:Standard deviation
+    # of deviations:2.0
+    Thresholding method:Otsu
+
+ConvertObjectsToImage:[module_num:8|svn_version:'Unknown'|variable_revision_number:1|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input objects:WormObjects
+    Name the output image:WormBinary
+    Select the color format:Binary (black & white)
+    Select the colormap:Default
+
+UntangleWorms:[module_num:9|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input binary image:WormBinary
+    Overlap style:Both
+    Name the output overlapping worm objects:OverlappingWorms_L1
+    Name the output non-overlapping worm objects:NonOverlappingWorms_L1
+    Training set file location:Elsewhere...|/projects/b1059/projects/Joy/CellProfiler/worm_models
+    Training set file name:L1_N2_HB101_100w.xml
+    Use training set weights?:Yes
+    Overlap weight:5.0
+    Leftover weight:10.0
+    Retain outlines of the overlapping objects?:No
+    Outline colormap?:Default
+    Name the overlapped outline image:OverlappedWormOutlines
+    Retain outlines of the non-overlapping worms?:No
+    Name the non-overlapped outlines image:L1_NonoverlappedWormOutlines
+    Train or untangle worms?:Untangle
+    Minimum area percentile:1.0
+    Minimum area factor:0.85
+    Maximum area percentile:90.0
+    Maximum area factor:1.0
+    Minimum length percentile:1.0
+    Minimum length factor:0.9
+    Maximum length percentile:99.0
+    Maximum length factor:1.1
+    Maximum cost percentile:90.0
+    Maximum cost factor:1.9
+    Number of control points:21
+    Maximum radius percentile:90.0
+    Maximum radius factor:1.0
+    Maximum complexity:Medium
+    Custom complexity:400
+
+UntangleWorms:[module_num:10|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input binary image:WormBinary
+    Overlap style:Both
+    Name the output overlapping worm objects:OverlappingWorms_L2L3
+    Name the output non-overlapping worm objects:NonOverlappingWorms_L2L3
+    Training set file location:Elsewhere...|/projects/b1059/projects/Joy/CellProfiler/worm_models
+    Training set file name:L2L3_N2_HB101_100w.xml
+    Use training set weights?:Yes
+    Overlap weight:5.0
+    Leftover weight:10.0
+    Retain outlines of the overlapping objects?:No
+    Outline colormap?:Default
+    Name the overlapped outline image:OverlappedWormOutlines
+    Retain outlines of the non-overlapping worms?:No
+    Name the non-overlapped outlines image:L2L3_NonoverlappedWormOutlines
+    Train or untangle worms?:Untangle
+    Minimum area percentile:1.0
+    Minimum area factor:0.85
+    Maximum area percentile:90.0
+    Maximum area factor:1.0
+    Minimum length percentile:1.0
+    Minimum length factor:0.9
+    Maximum length percentile:99.0
+    Maximum length factor:1.1
+    Maximum cost percentile:90.0
+    Maximum cost factor:1.9
+    Number of control points:21
+    Maximum radius percentile:90.0
+    Maximum radius factor:1.0
+    Maximum complexity:Medium
+    Custom complexity:400
+
+UntangleWorms:[module_num:11|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input binary image:WormBinary
+    Overlap style:Both
+    Name the output overlapping worm objects:OverlappingWorms_L4
+    Name the output non-overlapping worm objects:NonOverlappingWorms_L4
+    Training set file location:Elsewhere...|/projects/b1059/projects/Joy/CellProfiler/worm_models
+    Training set file name:L4_N2_HB101_100w.xml
+    Use training set weights?:Yes
+    Overlap weight:5.0
+    Leftover weight:10.0
+    Retain outlines of the overlapping objects?:No
+    Outline colormap?:Default
+    Name the overlapped outline image:OverlappedWormOutlines
+    Retain outlines of the non-overlapping worms?:No
+    Name the non-overlapped outlines image:NonoverlappedWormOutlines
+    Train or untangle worms?:Untangle
+    Minimum area percentile:1.0
+    Minimum area factor:0.85
+    Maximum area percentile:90.0
+    Maximum area factor:1.0
+    Minimum length percentile:1.0
+    Minimum length factor:0.9
+    Maximum length percentile:99.0
+    Maximum length factor:1.1
+    Maximum cost percentile:90.0
+    Maximum cost factor:1.9
+    Number of control points:21
+    Maximum radius percentile:90.0
+    Maximum radius factor:1.0
+    Maximum complexity:Medium
+    Custom complexity:400
+
+UntangleWorms:[module_num:12|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input binary image:WormBinary
+    Overlap style:Both
+    Name the output overlapping worm objects:OverlappingWorms_Adult
+    Name the output non-overlapping worm objects:NonOverlappingWorms_Adult
+    Training set file location:Elsewhere...|/projects/b1059/projects/Joy/CellProfiler/worm_models
+    Training set file name:Adult_N2_HB101_100w.xml
+    Use training set weights?:Yes
+    Overlap weight:5.0
+    Leftover weight:10.0
+    Retain outlines of the overlapping objects?:No
+    Outline colormap?:Default
+    Name the overlapped outline image:OverlappedWormOutlines
+    Retain outlines of the non-overlapping worms?:No
+    Name the non-overlapped outlines image:NonoverlappedWormOutlines
+    Train or untangle worms?:Untangle
+    Minimum area percentile:1.0
+    Minimum area factor:0.85
+    Maximum area percentile:90.0
+    Maximum area factor:1.0
+    Minimum length percentile:1.0
+    Minimum length factor:0.9
+    Maximum length percentile:99.0
+    Maximum length factor:1.1
+    Maximum cost percentile:90.0
+    Maximum cost factor:1.9
+    Number of control points:21
+    Maximum radius percentile:90.0
+    Maximum radius factor:1.0
+    Maximum complexity:Medium
+    Custom complexity:400
+
+RescaleIntensity:[module_num:13|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:RawBF
+    Name the output image:rescaledRawBF
+    Rescaling method:Choose specific values to be reset to the full intensity range
+    Method to calculate the minimum intensity:Custom
+    Method to calculate the maximum intensity:Custom
+    Lower intensity limit for the input image:0.0
+    Upper intensity limit for the input image:1.0
+    Intensity range for the input image:0.0,0.0625
+    Intensity range for the output image:0.0,1.0
+    Select image to match in maximum intensity:RawBF
+    Divisor value:1.0
+    Divisor measurement:None
+
+OverlayOutlines:[module_num:14|svn_version:'Unknown'|variable_revision_number:4|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Display outlines on a blank image?:No
+    Select image on which to display outlines:rescaledRawBF
+    Name the output image:rescaled_overlay
+    Outline display mode:Color
+    Select method to determine brightness of outlines:Max of image
+    How to outline:Inner
+    Select outline color:#8000FE
+    Select objects to display:NonOverlappingWorms_Adult
+    Select outline color:#FEFE0A
+    Select objects to display:NonOverlappingWorms_L4
+    Select outline color:#FB027F
+    Select objects to display:NonOverlappingWorms_L2L3
+    Select outline color:#20FEFE
+    Select objects to display:NonOverlappingWorms_L1
+    Select outline color:#22FE24
+    Select objects to display:Welloutline
+
+SaveImages:[module_num:15|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:rescaled_overlay
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:RawBF
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_overlay
+    Saved file format:png
+    Output file location:Default Output Folder sub-folder|images/processed_images
+    Image bit depth:8-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
+
+MeasureObjectIntensity:[module_num:16|svn_version:'Unknown'|variable_revision_number:4|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select images to measure:RawBF
+    Select objects to measure:NonOverlappingWorms_Adult, NonOverlappingWorms_L1, NonOverlappingWorms_L2L3, NonOverlappingWorms_L4
+
+MeasureObjectSizeShape:[module_num:17|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select object sets to measure:NonOverlappingWorms_Adult, NonOverlappingWorms_L1, NonOverlappingWorms_L2L3, NonOverlappingWorms_L4
+    Calculate the Zernike features?:No
+    Calculate the advanced features?:No
+
+RelateObjects:[module_num:18|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Parent objects:WormObjects
+    Child objects:NonOverlappingWorms_Adult
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Do you want to save the children with parents as a new object set?:No
+    Name the output object:RelateObjects
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+
+RelateObjects:[module_num:19|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Parent objects:WormObjects
+    Child objects:NonOverlappingWorms_L4
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Do you want to save the children with parents as a new object set?:No
+    Name the output object:RelateObjects
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+
+RelateObjects:[module_num:20|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Parent objects:WormObjects
+    Child objects:NonOverlappingWorms_L2L3
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Do you want to save the children with parents as a new object set?:No
+    Name the output object:RelateObjects
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+
+RelateObjects:[module_num:21|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Parent objects:WormObjects
+    Child objects:NonOverlappingWorms_L1
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Do you want to save the children with parents as a new object set?:No
+    Name the output object:RelateObjects
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+
+ExportToSpreadsheet:[module_num:22|svn_version:'Unknown'|variable_revision_number:13|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the column delimiter:Comma ("","")
+    Add image metadata columns to your object data file?:Yes
+    Add image file and folder names to your object data file?:No
+    Select the measurements to export:No
+    Calculate the per-image mean values for object measurements?:No
+    Calculate the per-image median values for object measurements?:No
+    Calculate the per-image standard deviation values for object measurements?:No
+    Output file location:Default Output Folder sub-folder|output_data
+    Create a GenePattern GCT file?:No
+    Select source of sample row name:Metadata
+    Select the image to use as the identifier:None
+    Select the metadata to use as the identifier:None
+    Export all measurement types?:Yes
+    Press button to select measurements:
+    Representation of Nan/Inf:NaN
+    Add a prefix to file names?:No
+    Filename prefix:L4_model
+    Overwrite existing files without warning?:Yes
+    Data to export:Do not use
+    Combine these object measurements with those of the previous object?:No
+    File name:DATA.csv
+    Use the object name for the file name?:Yes
+
+CreateBatchFiles:[module_num:23|svn_version:'Unknown'|variable_revision_number:8|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Store batch files in default output folder?:No
+    Output folder path:/projects/b1059/projects/Joy/CellProfiler/projects/20191119_example/output_data/20191119-growth-p28-m2X_C01.out
+    Are the cluster computers running Windows?:No
+    Hidden- in batch mode:Yes
+    Hidden- in distributed mode: in distributed mode:No
+    Hidden- default input folder at time of save:/projects/b1059/projects/Joy/CellProfiler
+    Hidden- revision number:403
+    Hidden- from old matlab: from old matlab:No
+    Local root path:/Users/joy/Documents/GitHub
+    Cluster root path:/projects/b1059/projects/Joy
+"
+Pipeline_UserPipeline,"CellProfiler Pipeline: http://www.cellprofiler.org
+Version:5
+DateRevision:403
+GitHash:
+ModuleCount:23
+HasImagePlaneDetails:False
+
+LoadData:[module_num:1|svn_version:'Unknown'|variable_revision_number:6|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Input data file location:Default Input Folder sub-folder|metadata
+    Name of the file:20191119_example_metadata_20201018.csv
+    Load images based on this data?:Yes
+    Base image location:Default Input Folder|
+    Process just a range of rows?:No
+    Rows to process:1,100000
+    Group images by metadata?:No
+    Select metadata tags for grouping:
+    Rescale intensities?:Yes
+
+ImageMath:[module_num:2|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Operation:Invert
+    Raise the power of the result by:1.0
+    Multiply the result by:1.0
+    Add to result:0.0
+    Set values less than 0 equal to 0?:Yes
+    Set values greater than 1 equal to 1?:Yes
+    Replace invalid values with 0?:Yes
+    Ignore the image masks?:No
+    Name the output image:InvertedRAW
+    Image or measurement?:Image
+    Select the first image:RawBF
+    Multiply the first image by:1.0
+    Measurement:
+    Image or measurement?:Image
+    Select the second image:
+    Multiply the second image by:1.0
+    Measurement:
+
+MaskImage:[module_num:3|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:InvertedRAW
+    Name the output image:MaskedRaw
+    Use objects or an image as a mask?:Image
+    Select object for mask:None
+    Select image for mask:wellmask_98.png
+    Invert the mask?:No
+
+IdentifyPrimaryObjects:[module_num:4|svn_version:'Unknown'|variable_revision_number:14|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:MaskedRaw
+    Name the primary objects to be identified:Welloutline
+    Typical diameter of objects, in pixel units (Min,Max):800,1800
+    Discard objects outside the diameter range?:Yes
+    Discard objects touching the border of the image?:No
+    Method to distinguish clumped objects:None
+    Method to draw dividing lines between clumped objects:Intensity
+    Size of smoothing filter:10
+    Suppress local maxima that are closer than this minimum allowed distance:7.0
+    Speed up by using lower-resolution image to find local maxima?:Yes
+    Fill holes in identified objects?:Never
+    Automatically calculate size of smoothing filter for declumping?:Yes
+    Automatically calculate minimum allowed distance between local maxima?:Yes
+    Handling of objects if excessive number of objects identified:Continue
+    Maximum number of objects:500
+    Display accepted local maxima?:No
+    Select maxima color:Blue
+    Use advanced settings?:Yes
+    Threshold setting version:11
+    Threshold strategy:Global
+    Thresholding method:Manual
+    Threshold smoothing scale:1.3488
+    Threshold correction factor:1.0
+    Lower and upper bounds on threshold:0.0,1.0
+    Manual threshold:0.5
+    Select the measurement to threshold with:None
+    Two-class or three-class thresholding?:Two classes
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+    Size of adaptive window:50
+    Lower outlier fraction:0.05
+    Upper outlier fraction:0.05
+    Averaging method:Mean
+    Variance method:Standard deviation
+    # of deviations:2.0
+    Thresholding method:Otsu
+
+CorrectIlluminationCalculate:[module_num:5|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:MaskedRaw
+    Name the output image:IllumGrey2
+    Select how the illumination function is calculated:Regular
+    Dilate objects in the final averaged image?:No
+    Dilation radius:1
+    Block size:60
+    Rescale the illumination function?:Yes
+    Calculate function for each image individually, or based on all images?:Each
+    Smoothing method:Median Filter
+    Method to calculate smoothing filter size:Object size
+    Approximate object diameter:100
+    Smoothing filter size:10
+    Retain the averaged image?:No
+    Name the averaged image:IllumBlueAvg
+    Retain the dilated image?:No
+    Name the dilated image:IllumBlueDilated
+    Automatically calculate spline parameters?:Yes
+    Background mode:auto
+    Number of spline points:5
+    Background threshold:2.0
+    Image resampling factor:2.0
+    Maximum number of iterations:40
+    Residual value for convergence:0.001
+
+CorrectIlluminationApply:[module_num:6|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:MaskedRaw
+    Name the output image:CorrGrey2
+    Select the illumination function:IllumGrey2
+    Select how the illumination function is applied:Divide
+    Set output image values less than 0 equal to 0?:Yes
+    Set output image values greater than 1 equal to 1?:Yes
+
+IdentifyPrimaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_number:14|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:CorrGrey2
+    Name the primary objects to be identified:WormObjects
+    Typical diameter of objects, in pixel units (Min,Max):10,150
+    Discard objects outside the diameter range?:Yes
+    Discard objects touching the border of the image?:Yes
+    Method to distinguish clumped objects:None
+    Method to draw dividing lines between clumped objects:Intensity
+    Size of smoothing filter:10
+    Suppress local maxima that are closer than this minimum allowed distance:7.0
+    Speed up by using lower-resolution image to find local maxima?:Yes
+    Fill holes in identified objects?:After both thresholding and declumping
+    Automatically calculate size of smoothing filter for declumping?:Yes
+    Automatically calculate minimum allowed distance between local maxima?:Yes
+    Handling of objects if excessive number of objects identified:Continue
+    Maximum number of objects:500
+    Display accepted local maxima?:No
+    Select maxima color:Blue
+    Use advanced settings?:Yes
+    Threshold setting version:11
+    Threshold strategy:Global
+    Thresholding method:Robust Background
+    Threshold smoothing scale:1.3488
+    Threshold correction factor:1.0
+    Lower and upper bounds on threshold:0.001,1.0
+    Manual threshold:0.0
+    Select the measurement to threshold with:None
+    Two-class or three-class thresholding?:Two classes
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+    Size of adaptive window:50
+    Lower outlier fraction:0.05
+    Upper outlier fraction:0.05
+    Averaging method:Mean
+    Variance method:Standard deviation
+    # of deviations:2.0
+    Thresholding method:Otsu
+
+ConvertObjectsToImage:[module_num:8|svn_version:'Unknown'|variable_revision_number:1|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input objects:WormObjects
+    Name the output image:WormBinary
+    Select the color format:Binary (black & white)
+    Select the colormap:Default
+
+UntangleWorms:[module_num:9|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input binary image:WormBinary
+    Overlap style:Both
+    Name the output overlapping worm objects:OverlappingWorms_L1
+    Name the output non-overlapping worm objects:NonOverlappingWorms_L1
+    Training set file location:Elsewhere...|/projects/b1059/projects/Joy/CellProfiler/worm_models
+    Training set file name:L1_N2_HB101_100w.xml
+    Use training set weights?:Yes
+    Overlap weight:5.0
+    Leftover weight:10.0
+    Retain outlines of the overlapping objects?:No
+    Outline colormap?:Default
+    Name the overlapped outline image:OverlappedWormOutlines
+    Retain outlines of the non-overlapping worms?:No
+    Name the non-overlapped outlines image:L1_NonoverlappedWormOutlines
+    Train or untangle worms?:Untangle
+    Minimum area percentile:1.0
+    Minimum area factor:0.85
+    Maximum area percentile:90.0
+    Maximum area factor:1.0
+    Minimum length percentile:1.0
+    Minimum length factor:0.9
+    Maximum length percentile:99.0
+    Maximum length factor:1.1
+    Maximum cost percentile:90.0
+    Maximum cost factor:1.9
+    Number of control points:21
+    Maximum radius percentile:90.0
+    Maximum radius factor:1.0
+    Maximum complexity:Medium
+    Custom complexity:400
+
+UntangleWorms:[module_num:10|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input binary image:WormBinary
+    Overlap style:Both
+    Name the output overlapping worm objects:OverlappingWorms_L2L3
+    Name the output non-overlapping worm objects:NonOverlappingWorms_L2L3
+    Training set file location:Elsewhere...|/projects/b1059/projects/Joy/CellProfiler/worm_models
+    Training set file name:L2L3_N2_HB101_100w.xml
+    Use training set weights?:Yes
+    Overlap weight:5.0
+    Leftover weight:10.0
+    Retain outlines of the overlapping objects?:No
+    Outline colormap?:Default
+    Name the overlapped outline image:OverlappedWormOutlines
+    Retain outlines of the non-overlapping worms?:No
+    Name the non-overlapped outlines image:L2L3_NonoverlappedWormOutlines
+    Train or untangle worms?:Untangle
+    Minimum area percentile:1.0
+    Minimum area factor:0.85
+    Maximum area percentile:90.0
+    Maximum area factor:1.0
+    Minimum length percentile:1.0
+    Minimum length factor:0.9
+    Maximum length percentile:99.0
+    Maximum length factor:1.1
+    Maximum cost percentile:90.0
+    Maximum cost factor:1.9
+    Number of control points:21
+    Maximum radius percentile:90.0
+    Maximum radius factor:1.0
+    Maximum complexity:Medium
+    Custom complexity:400
+
+UntangleWorms:[module_num:11|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input binary image:WormBinary
+    Overlap style:Both
+    Name the output overlapping worm objects:OverlappingWorms_L4
+    Name the output non-overlapping worm objects:NonOverlappingWorms_L4
+    Training set file location:Elsewhere...|/projects/b1059/projects/Joy/CellProfiler/worm_models
+    Training set file name:L4_N2_HB101_100w.xml
+    Use training set weights?:Yes
+    Overlap weight:5.0
+    Leftover weight:10.0
+    Retain outlines of the overlapping objects?:No
+    Outline colormap?:Default
+    Name the overlapped outline image:OverlappedWormOutlines
+    Retain outlines of the non-overlapping worms?:No
+    Name the non-overlapped outlines image:NonoverlappedWormOutlines
+    Train or untangle worms?:Untangle
+    Minimum area percentile:1.0
+    Minimum area factor:0.85
+    Maximum area percentile:90.0
+    Maximum area factor:1.0
+    Minimum length percentile:1.0
+    Minimum length factor:0.9
+    Maximum length percentile:99.0
+    Maximum length factor:1.1
+    Maximum cost percentile:90.0
+    Maximum cost factor:1.9
+    Number of control points:21
+    Maximum radius percentile:90.0
+    Maximum radius factor:1.0
+    Maximum complexity:Medium
+    Custom complexity:400
+
+UntangleWorms:[module_num:12|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input binary image:WormBinary
+    Overlap style:Both
+    Name the output overlapping worm objects:OverlappingWorms_Adult
+    Name the output non-overlapping worm objects:NonOverlappingWorms_Adult
+    Training set file location:Elsewhere...|/projects/b1059/projects/Joy/CellProfiler/worm_models
+    Training set file name:Adult_N2_HB101_100w.xml
+    Use training set weights?:Yes
+    Overlap weight:5.0
+    Leftover weight:10.0
+    Retain outlines of the overlapping objects?:No
+    Outline colormap?:Default
+    Name the overlapped outline image:OverlappedWormOutlines
+    Retain outlines of the non-overlapping worms?:No
+    Name the non-overlapped outlines image:NonoverlappedWormOutlines
+    Train or untangle worms?:Untangle
+    Minimum area percentile:1.0
+    Minimum area factor:0.85
+    Maximum area percentile:90.0
+    Maximum area factor:1.0
+    Minimum length percentile:1.0
+    Minimum length factor:0.9
+    Maximum length percentile:99.0
+    Maximum length factor:1.1
+    Maximum cost percentile:90.0
+    Maximum cost factor:1.9
+    Number of control points:21
+    Maximum radius percentile:90.0
+    Maximum radius factor:1.0
+    Maximum complexity:Medium
+    Custom complexity:400
+
+RescaleIntensity:[module_num:13|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:RawBF
+    Name the output image:rescaledRawBF
+    Rescaling method:Choose specific values to be reset to the full intensity range
+    Method to calculate the minimum intensity:Custom
+    Method to calculate the maximum intensity:Custom
+    Lower intensity limit for the input image:0.0
+    Upper intensity limit for the input image:1.0
+    Intensity range for the input image:0.0,0.0625
+    Intensity range for the output image:0.0,1.0
+    Select image to match in maximum intensity:RawBF
+    Divisor value:1.0
+    Divisor measurement:None
+
+OverlayOutlines:[module_num:14|svn_version:'Unknown'|variable_revision_number:4|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Display outlines on a blank image?:No
+    Select image on which to display outlines:rescaledRawBF
+    Name the output image:rescaled_overlay
+    Outline display mode:Color
+    Select method to determine brightness of outlines:Max of image
+    How to outline:Inner
+    Select outline color:#8000FE
+    Select objects to display:NonOverlappingWorms_Adult
+    Select outline color:#FEFE0A
+    Select objects to display:NonOverlappingWorms_L4
+    Select outline color:#FB027F
+    Select objects to display:NonOverlappingWorms_L2L3
+    Select outline color:#20FEFE
+    Select objects to display:NonOverlappingWorms_L1
+    Select outline color:#22FE24
+    Select objects to display:Welloutline
+
+SaveImages:[module_num:15|svn_version:'Unknown'|variable_revision_number:15|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:rescaled_overlay
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:RawBF
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_overlay
+    Saved file format:png
+    Output file location:Default Output Folder sub-folder|images/processed_images
+    Image bit depth:8-bit integer
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...|
+    How to save the series:T (Time)
+
+MeasureObjectIntensity:[module_num:16|svn_version:'Unknown'|variable_revision_number:4|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select images to measure:RawBF
+    Select objects to measure:NonOverlappingWorms_Adult, NonOverlappingWorms_L1, NonOverlappingWorms_L2L3, NonOverlappingWorms_L4
+
+MeasureObjectSizeShape:[module_num:17|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select object sets to measure:NonOverlappingWorms_Adult, NonOverlappingWorms_L1, NonOverlappingWorms_L2L3, NonOverlappingWorms_L4
+    Calculate the Zernike features?:No
+    Calculate the advanced features?:No
+
+RelateObjects:[module_num:18|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Parent objects:WormObjects
+    Child objects:NonOverlappingWorms_Adult
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Do you want to save the children with parents as a new object set?:No
+    Name the output object:RelateObjects
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+
+RelateObjects:[module_num:19|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Parent objects:WormObjects
+    Child objects:NonOverlappingWorms_L4
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Do you want to save the children with parents as a new object set?:No
+    Name the output object:RelateObjects
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+
+RelateObjects:[module_num:20|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Parent objects:WormObjects
+    Child objects:NonOverlappingWorms_L2L3
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Do you want to save the children with parents as a new object set?:No
+    Name the output object:RelateObjects
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+
+RelateObjects:[module_num:21|svn_version:'Unknown'|variable_revision_number:5|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Parent objects:WormObjects
+    Child objects:NonOverlappingWorms_L1
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Do you want to save the children with parents as a new object set?:No
+    Name the output object:RelateObjects
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+    Parent name:None
+
+ExportToSpreadsheet:[module_num:22|svn_version:'Unknown'|variable_revision_number:13|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the column delimiter:Comma ("","")
+    Add image metadata columns to your object data file?:Yes
+    Add image file and folder names to your object data file?:No
+    Select the measurements to export:No
+    Calculate the per-image mean values for object measurements?:No
+    Calculate the per-image median values for object measurements?:No
+    Calculate the per-image standard deviation values for object measurements?:No
+    Output file location:Default Output Folder sub-folder|output_data
+    Create a GenePattern GCT file?:No
+    Select source of sample row name:Metadata
+    Select the image to use as the identifier:None
+    Select the metadata to use as the identifier:None
+    Export all measurement types?:Yes
+    Press button to select measurements:
+    Representation of Nan/Inf:NaN
+    Add a prefix to file names?:No
+    Filename prefix:L4_model
+    Overwrite existing files without warning?:Yes
+    Data to export:Do not use
+    Combine these object measurements with those of the previous object?:No
+    File name:DATA.csv
+    Use the object name for the file name?:Yes
+
+CreateBatchFiles:[module_num:23|svn_version:'Unknown'|variable_revision_number:8|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Store batch files in default output folder?:No
+    Output folder path:/Users/joy/Documents/GitHub/CellProfiler/batch_files
+    Are the cluster computers running Windows?:No
+    Hidden- in batch mode:No
+    Hidden- in distributed mode: in distributed mode:No
+    Hidden- default input folder at time of save: default input folder at time of save:/Users/joy
+    Hidden- revision number: revision number:0
+    Hidden- from old matlab: from old matlab:No
+    Local root path:/Users/joy/Documents/GitHub
+    Cluster root path:/projects/b1059/projects/Joy
+"
+Run_Timestamp,2020-10-18T14:04:22.628805

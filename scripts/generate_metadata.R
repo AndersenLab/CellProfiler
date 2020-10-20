@@ -6,8 +6,14 @@
 # [1] = Assay Name in Project Directory i.e. 20200626_toxin08B
 args <- commandArgs(trailingOnly = TRUE)
 require(tidyverse)
+<<<<<<< HEAD
 basedir <-paste0(getwd(),"/")
 setwd(paste(basedir, "projects/", as.character(args[1]), "/raw_images", sep = ""))
+=======
+basedir <- getwd()
+
+setwd(paste0(basedir, "/projects/", as.character(args[1]), "/raw_images"))
+>>>>>>> f55042fa8cc3f7ff38bfede596597d1aae9157f4
 
 ###################
 # Image File Path #
@@ -29,14 +35,14 @@ images <- Image_FileName_RawBF %>%
 
 
 
-images$Image_PathName_RawBF <- paste(basedir,"projects/",as.character(args[1]),"/raw_images", sep = "") ## CLUSTER
+images$Image_PathName_RawBF <- paste(basedir,"/projects/",as.character(args[1]),"/raw_images", sep = "") ## CLUSTER
 images <- images %>% 
   dplyr::select(Image_FileName_RawBF, Image_PathName_RawBF, date, experiment, plate, magnification, well)
 
 #######################
 # Well Mask File Path #
 #######################
-images$Image_PathName_wellmask_98.png <- paste(basedir,"well_masks/",sep = "") ## CLUSTER
+images$Image_PathName_wellmask_98.png <- paste(basedir,"/well_masks/",sep = "") ## CLUSTER
 images$Image_FileName_wellmask_98.png <- "wellmask_98.png"
 colnames(images) <- c(colnames(images)[1:2], 
                       "Metadata_Date",
@@ -54,6 +60,6 @@ filename <- paste(as.character(args[1]),
                   "metadata",
                   today,
                   sep = "_")
-setwd(paste(basedir,"metadata",sep = ""))
+setwd(paste0(basedir, "/metadata"))
 write.csv(x = images, file = paste(filename,".csv",sep = ""), row.names = F)
 

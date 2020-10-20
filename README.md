@@ -6,16 +6,18 @@
 ```
 CellProfiler
   ├── batch_files
-      ├── 20191119_example_batch_20200812.h5
+      ├── 20191119_example_batch_20201018.h5
   ├── metadata
-      ├── 20191119_example_metadata_20200812.csv
+      ├── 20191119_example_metadata_20201018.csv
   ├── pipelines
-      ├── 20191119_example_metadata_20200812.cpproj
+      ├── 20191119_example.cpproj
+      ├── sample_pipelines
   ├── projects
       ├── 20191119_example
         ├── raw_images
         ├── output_data
-            ├── 20191119_example_summary_data
+            ├── 20191119_example_data_1603047856
+                ├── CellProfiler-Analysis_20191119_example_data_1603047856run1
                 ├── Logs
                 ├── ProcessedImages
                 ├── OverlappingWorms_Data
@@ -29,10 +31,6 @@ CellProfiler
   ├── well_masks
       ├── wellmask_98.png
   ├── worm_models
-      ├── Adult_N2_HB101_50w.xml
-      ├── L1_N2_HB101_50w.xml
-      ├── L2L3_N2_HB101_50w.xml
-      ├── L4_N2_HB101_50w.xml
       ├── Adult_N2_HB101_100w.xml
       ├── L1_N2_HB101_100w.xml
       ├── L2L3_N2_HB101_100w.xml
