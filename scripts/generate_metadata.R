@@ -6,14 +6,8 @@
 # [1] = Assay Name in Project Directory i.e. 20200626_toxin08B
 args <- commandArgs(trailingOnly = TRUE)
 require(tidyverse)
-<<<<<<< HEAD
 basedir <-paste0(getwd(),"/")
 setwd(paste(basedir, "projects/", as.character(args[1]), "/raw_images", sep = ""))
-=======
-basedir <- getwd()
-
-setwd(paste0(basedir, "/projects/", as.character(args[1]), "/raw_images"))
->>>>>>> f55042fa8cc3f7ff38bfede596597d1aae9157f4
 
 ###################
 # Image File Path #
