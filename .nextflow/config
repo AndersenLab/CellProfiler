@@ -1,8 +1,0 @@
-process {
-    executor = 'slurm'
-    queue = 'genomicsguestA'
-    clusterOptions = '-A b1042 -t 24:00:00 -e errlog.txt'
-}
-
-workDir = "/projects/b1042/AndersenLab/work/sam"
-tmpDir = "/projects/b1042/AndersenLab/tmp"
