@@ -73,7 +73,7 @@ Rscript scripts/generate_metadata.R 20191119_example
 5) Collect measurements using CellProfiler:
 ```
 bash scripts/run_cellprofiler.sh projects/20191119_example batch_files/20191119_example_batch_[date].h5
-bash scripts/check_run_cellprofiler.sh projects/20191119_example batch_files/20191119_example_batch_[date].h5
+bash scripts/check_run_cellprofiler.sh projects/20191119_example batch_files/20191119_example_batch_[date].h5 [timestamp]
 ```
 6) Aggregate measurement data:
 ```
