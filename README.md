@@ -77,7 +77,7 @@ bash scripts/check_run_cellprofiler.sh projects/20191119_example batch_files/201
 ```
 6) Aggregate measurement data:
 ```
-Rscript scripts/aggregate_cellprofiler_results.R 20191119_example_data_[timestamp] 20191119_example_metadata_[date].csv [timestamp] [output_info]
+Rscript scripts/aggregate_cellprofiler_results.R 20191119_example_data_[timestamp] 20191119_example_metadata_[date].csv [output_info]
 ```
 At this point, a summarized .RData file will be available for download, containing measurement outputs corresponding to each worm model used in the pipeline:
 ```
