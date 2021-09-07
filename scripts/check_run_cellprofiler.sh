@@ -52,30 +52,40 @@ done
 # Go back to base directory
 cd ${CPBIN}
 
-# Test if not_processed.tsv was written to IMAGES directory
-if test -f ${IMAGES}not_processed.tsv; then
-    # Count number  of images in not_processed.tsv file
-    N_NOT_PROCESSED=$(cat ${IMAGES}not_processed.tsv | wc -l);
-    # Report the number of images not procesed
-    if [ ${N_NOT_PROCESSED} -eq 1 ]; then
-        echo -e "Looks like 1 file was not processed completely.\n";
-        echo -e "We'll try to reprocess it for ya, hold a bit."; else    
-        echo -e "Looks like "$(($N_NOT_PROCESSED))" files were not processed completely.\n";
-        echo -e "We'll try to reprocess those for ya, hold a bit."; # let em know there's a extra
-    fi;
-    # Find the right image numbers to pass to cellproiler
-    # get tsv with row numbers in matching each file name in not_processed.tsv
-    grep -w -F -f ${IMAGES}not_processed.tsv ${IMAGES}nimage_names.tsv > ${IMAGES}nimage_not_processed.tsv
+# Count images in ProcessedImages dir
+NPROC_IMAGES=$(ls ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/ProcessedImages/ | grep -- 'e' /*.png | wc -l)
 
-    # get sequence of numbers
-    REPROCESS_IMAGE_NUMS=$(awk '{ print $1 }' ${IMAGES}nimage_not_processed.tsv)
+# report error if the number of processed images do not equal the number of raw images.
+if [ ${NPROC_IMAGES} == ${NIMAGES} ]; then     
+    # Test if not_processed.tsv was written to IMAGES directory
+    if test -f ${IMAGES}not_processed.tsv; then
+        # Count number  of images in not_processed.tsv file
+        N_NOT_PROCESSED=$(cat ${IMAGES}not_processed.tsv | wc -l);
+        # Report the number of images not procesed
+        if [ ${N_NOT_PROCESSED} -eq 1 ]; then
+            echo -e "Looks like 1 file was not processed completely.\n";
+            echo -e "We'll try to reprocess it for ya, hold a bit."; else    
+            echo -e "Looks like "$(($N_NOT_PROCESSED))" files were not processed completely.\n";
+            echo -e "We'll try to reprocess those for ya, hold a bit."; # let em know there's a extra
+        fi;
+        # Find the right image numbers to pass to cellproiler
+        # get tsv with row numbers in matching each file name in not_processed.tsv
+        grep -w -F -f ${IMAGES}not_processed.tsv ${IMAGES}nimage_names.tsv > ${IMAGES}nimage_not_processed.tsv
+
+        # get sequence of numbers
+        REPROCESS_IMAGE_NUMS=$(awk '{ print $1 }' ${IMAGES}nimage_not_processed.tsv)
     
-    # Send these files back to CellProfiler script for reprocessing.    
-    for i in ${REPROCESS_IMAGE_NUMS};
-        do
-        sbatch ${CPBIN}/scripts/cellprofiler_parallel_bigmem.sh $i 2;
-    done
+        # Send these files back to CellProfiler script for reprocessing.    
+        for i in ${REPROCESS_IMAGE_NUMS};
+            do
+            sbatch ${CPBIN}/scripts/cellprofiler_parallel_bigmem.sh $i 2;
+        done
     else
         # Report the good news
         echo -e "GREAT NEWS! All images appear to be processed correctly."
+    fi
+else
+    # Report the bad news and suggest user fix raw image names.
+    echo -e "Error: Not all processed images detected. "${NIMAGES}" raw images and "${NPROC_IMAGES}" processed images found.\n"
+    echo -e "Please check that raw images all have the same number of digits for plate number\ne.g. p1 -> p001, p10 -> p010, p100 -> p100\nRe-run run_cellprofiler.sh script after image names are corrected."
 fi
