@@ -31,6 +31,14 @@ mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/OverlappingWorms_Data
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/ProcessedImages
 mkdir ${OUTPUT_DATA}/${PROJECT_TITLE}_data_${STAMP}/Logs
 
+# Check to see if image file names are same length. They should be. If not warn.
+name_test=$(ls ${IMAGES} | grep /*.TIF | awk -F'.' '{ print(NF>1?length-length($NF)-1:length) }' | uniq | wc -l)
+if (test $name_test -gt 1); then
+    echo -e "WARNING: Raw image file names have variable lengths.";
+    echo -e "Consider renaming images so plate numbers have the same number of digits."
+    echo -e "e.g. p1 -> p001, p10 -> p010, p100 -> p100";
+fi
+
 # need to check if ${IMAGES}image_names.tsv and ${IMAGES}nimage_names.tsv exist.
 # If they do remove in case image file list has changed.
 if test -f ${IMAGES}image_names.tsv; then
